@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1BE1362FA176D4008794EF /* Alamofire */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		6D2957142F9FFE8000B77185 /* Sport Mob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Mob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = "Sport Mob";
 			packageProductDependencies = (
+				6D1BE1362FA176D4008794EF /* Alamofire */,
 			);
 			productName = "Sport Mob";
 			productReference = 6D2957142F9FFE8000B77185 /* Sport Mob.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = 6D29570B2F9FFE8000B77185;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D2957152F9FFE8000B77185 /* Products */;
 			projectDirPath = "";
@@ -345,6 +354,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D1BE1362FA176D4008794EF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D29570C2F9FFE8000B77185 /* Project object */;
 }
