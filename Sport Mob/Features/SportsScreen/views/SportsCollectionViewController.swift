@@ -12,8 +12,11 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     
     let sportsArray = [("football","Football"), ("basketball","Basketball"), ("tennis","Tennis"), ("cricket","Cricket")]
     
+    var presenter: SportsPresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter = SportsPresenter()
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         
@@ -76,5 +79,13 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
             return header
         }
         return UICollectionReusableView()
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let sportEndpoint = presenter?.getEndpoint(at: indexPath.row) ?? ""
+        let leagueVC = storyboard?.instantiateViewController(withIdentifier: "LeagueTableViewController") as? LeagueTableViewController
+        print("sport endpoint: \(sportEndpoint)")
+        let leaguePresenter = LeaguePresenter(view: leagueVC, sportEndpointName: sportEndpoint)
+        leagueVC?.presenter = leaguePresenter
+        navigationController?.pushViewController(leagueVC!, animated: true)
     }
 }

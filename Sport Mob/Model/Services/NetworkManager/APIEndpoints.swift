@@ -9,6 +9,9 @@ import Foundation
 
 
 struct APIEndpoints{
-    static let leagues = "/"
+    static let football = "/football"
+    static let basketball = "/basketball"
+    static let tennis = "/tennis"
+    static let cricket = "/cricket"
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol LeaguePresenterProtocol {
-    func fetchLeagues(endpoint : String) async
+    func fetchLeagues() async
     func getleaguesCount() -> Int
     func getLeague(at index: Int) -> League
 }
@@ -18,15 +18,17 @@ class LeaguePresenter: LeaguePresenterProtocol {
     weak var view: LeagueTableViewControllerProtocol?
     private let networkManager = NetworkManager.shared
     private var leagues : [League] = []
+    var sportEndpointName : String
 
-    init(view: LeagueTableViewControllerProtocol?) {
+    init(view: LeagueTableViewControllerProtocol?, sportEndpointName: String) {
         self.view = view
+        self.sportEndpointName = sportEndpointName
     }
 
-    func fetchLeagues(endpoint : String) async{
+    func fetchLeagues() async{
         view?.showLoading()
         do{
-            let response: LeaguesResponse = try await networkManager.getData(endpoint: endpoint, met: "Leagues")
+            let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues")
             leagues = response.result
             view?.hideLoading()
             view?.reloadData()

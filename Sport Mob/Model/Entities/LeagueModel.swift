@@ -17,8 +17,8 @@ struct LeaguesResponse: Codable {
 struct League: Codable {
     let leagueKey: Int
     let leagueName: String
-    let countryKey: Int
-    let countryName: String
+    let countryKey: Int?
+    let countryName: String?
     let leagueLogo: String?
     let countryLogo: String?
 

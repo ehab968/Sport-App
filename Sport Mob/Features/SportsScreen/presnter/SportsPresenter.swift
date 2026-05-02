@@ -7,8 +7,18 @@
 
 import Foundation
 
-protocol SportsPresenter {
+protocol SportsPresenterProtocol {
+    func getEndpoint(at index: Int) -> String
 }
 
-class SportsPresenterImp: SportsPresenter {
+class SportsPresenter: SportsPresenterProtocol {
+    func getEndpoint(at index: Int) -> String {
+        switch index {
+        case 0: return APIEndpoints.football
+        case 1: return APIEndpoints.basketball
+        case 2: return APIEndpoints.tennis
+        case 3: return APIEndpoints.cricket
+        default: return ""
+        }
+    }
 }

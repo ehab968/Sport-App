@@ -22,8 +22,10 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = LeaguePresenter(view: self)
-        let indicator = UIActivityIndicatorView(style: .large)
+        Task {
+            await presenter?.fetchLeagues()
+        }
+        
     }
     
     
@@ -90,7 +92,7 @@ extension LeagueTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
     
 }
