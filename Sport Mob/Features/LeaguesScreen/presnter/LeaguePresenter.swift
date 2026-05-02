@@ -28,8 +28,11 @@ class LeaguePresenter: LeaguePresenterProtocol {
         do{
             let response: LeaguesResponse = try await networkManager.getData(endpoint: endpoint, met: "Leagues")
             leagues = response.result
+            view?.hideLoading()
+            view?.reloadData()
         }
         catch{
+            view?.hideLoading()
             view?.showError(message: error.localizedDescription)
         }
         
