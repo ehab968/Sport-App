@@ -8,7 +8,11 @@ import Foundation
 import Alamofire
 
 
-class NetworkManager {
+protocol NetworkManagerProtocol {
+    func getData<T:Decodable>(endpoint : String,met : String,parameters: [String : Any]?)async throws-> T
+}
+
+class NetworkManager: NetworkManagerProtocol {
     
     static let shared = NetworkManager()
     private let baseURL = "https://apiv2.allsportsapi.com"
