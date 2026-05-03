@@ -94,6 +94,9 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Sports" image="soccerball.inverse" catalog="system" id="qzi-M6-Zc8"/>
+                    <connections>
+                        <segue destination="EDk-Ri-fav" kind="push" id="rlP-M1-IoW"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnD-fT-e8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -163,7 +166,7 @@
             </objects>
             <point key="canvasLocation" x="-411" y="178"/>
         </scene>
-        <!--League Table View Controller-->
+        <!--Leagues -->
         <scene sceneID="zk3-tI-RIa">
             <objects>
                 <tableViewController storyboardIdentifier="LeagueTableViewController" id="EDk-Ri-fav" customClass="LeagueTableViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,29 +175,58 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="iC3-si-lNU" detailTextLabel="rtT-jW-pln" rowHeight="113" style="IBUITableViewCellStyleSubtitle" id="OAd-SE-aJr">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="113" id="OAd-SE-aJr" customClass="LeagueCell" customModule="Sport_Mob" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="113"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OAd-SE-aJr" id="eZz-Ti-dkN">
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="113"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iC3-si-lNU">
-                                            <rect key="frame" x="19.999999999999996" y="31.333333333333329" width="41.666666666666664" height="24"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="laU-El-RbT">
+                                            <rect key="frame" x="8" y="0.0" width="131" height="113"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="200" text="League name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OsW-1a-LAN">
+                                            <rect key="frame" x="149" y="30" width="162" height="21.666666666666671"/>
+                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rtT-jW-pln">
-                                            <rect key="frame" x="19.999999999999996" y="59.000000000000007" width="55.666666666666664" height="19.333333333333332"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="country name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P9f-jb-ZjF">
+                                            <rect key="frame" x="149" y="59.666666666666664" width="100" height="19.333333333333336"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GpI-Ks-kce">
+                                            <rect key="frame" x="319" y="31.666666666666671" width="50" height="50"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="3oa-7g-OTx"/>
+                                                <constraint firstAttribute="width" constant="50" id="f3T-IV-SvX"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="OsW-1a-LAN" firstAttribute="leading" secondItem="laU-El-RbT" secondAttribute="trailing" constant="10" id="9Ig-Hj-Jhg"/>
+                                        <constraint firstItem="P9f-jb-ZjF" firstAttribute="top" secondItem="OsW-1a-LAN" secondAttribute="bottom" constant="8" id="JzA-2u-NAy"/>
+                                        <constraint firstItem="GpI-Ks-kce" firstAttribute="leading" secondItem="OsW-1a-LAN" secondAttribute="trailing" constant="8" id="Kqb-7V-dnE"/>
+                                        <constraint firstAttribute="trailing" secondItem="GpI-Ks-kce" secondAttribute="trailing" constant="24" id="LW5-Zp-LhD"/>
+                                        <constraint firstItem="OsW-1a-LAN" firstAttribute="top" secondItem="eZz-Ti-dkN" secondAttribute="top" constant="30" id="QWS-ub-WYP"/>
+                                        <constraint firstItem="laU-El-RbT" firstAttribute="leading" secondItem="eZz-Ti-dkN" secondAttribute="leading" constant="8" id="bi8-Bb-d97"/>
+                                        <constraint firstItem="P9f-jb-ZjF" firstAttribute="leading" secondItem="OsW-1a-LAN" secondAttribute="leading" id="ski-NI-jN2"/>
+                                        <constraint firstItem="GpI-Ks-kce" firstAttribute="centerY" secondItem="eZz-Ti-dkN" secondAttribute="centerY" id="xTh-RD-s2l"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstItem="laU-El-RbT" firstAttribute="width" secondItem="OAd-SE-aJr" secondAttribute="width" multiplier="1:3" id="Stk-y3-B4r"/>
+                                    <constraint firstAttribute="bottom" secondItem="laU-El-RbT" secondAttribute="bottom" id="USM-v8-WZX"/>
+                                    <constraint firstItem="laU-El-RbT" firstAttribute="top" secondItem="OAd-SE-aJr" secondAttribute="top" id="ZRS-4u-3Xw"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="countryImage" destination="GpI-Ks-kce" id="35w-d8-ihk"/>
+                                    <outlet property="countryLabel" destination="P9f-jb-ZjF" id="iQG-Pt-Hm4"/>
+                                    <outlet property="leagueImage" destination="laU-El-RbT" id="5Hp-yY-XS0"/>
+                                    <outlet property="leagueLabel" destination="OsW-1a-LAN" id="v3C-xL-HLi"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -202,6 +234,9 @@
                             <outlet property="delegate" destination="EDk-Ri-fav" id="Gew-Kg-myV"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Leagues " id="azW-W8-BpL">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="eUF-Ed-GKP"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMg-hl-LuO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -258,6 +293,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.clockwise" catalog="system" width="110" height="128"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">

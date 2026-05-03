@@ -67,26 +67,26 @@ extension LeagueTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueCell
         let league = presenter?.getLeague(at: indexPath.row)
-        cell.textLabel?.text = league?.leagueName
-        cell.detailTextLabel?.text = league?.countryName
+        cell.leagueLabel.text = league?.leagueName
+        cell.countryLabel.text = league?.countryName
         
         if let logoString = league?.leagueLogo, let url = URL(string: logoString) {
-            cell.imageView?.sd_setImage(with: url, placeholderImage: UIImage.league)
+            cell.leagueImage.sd_setImage(with: url, placeholderImage: UIImage.league)
         } else {
-            cell.imageView?.image = UIImage.league
+            cell.leagueImage.image = UIImage.league
         }
         
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        imageView.contentMode = .scaleAspectFit
+
+        
         let placeholder = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        
         if let logoString = league?.countryLogo, let url = URL(string: logoString) {
-            imageView.sd_setImage(with: url, placeholderImage: placeholder)
+            cell.countryImage.sd_setImage(with: url, placeholderImage: placeholder)
         } else {
-            imageView.image = placeholder
+            cell.countryImage.image = placeholder
         }
-        cell.accessoryView = imageView
         
         return cell
     }
