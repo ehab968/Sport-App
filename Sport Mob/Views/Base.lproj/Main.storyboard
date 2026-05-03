@@ -235,7 +235,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Leagues " id="azW-W8-BpL">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="eUF-Ed-GKP"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="eUF-Ed-GKP">
+                            <connections>
+                                <action selector="reloadBtnAction:" destination="EDk-Ri-fav" id="HJe-R7-ZYL"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMg-hl-LuO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

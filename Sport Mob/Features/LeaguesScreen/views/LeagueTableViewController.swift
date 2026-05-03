@@ -31,9 +31,12 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     
     func showLoading() {
-        indicator.center = self.view.center
-        self.view.addSubview(indicator)
-        indicator.startAnimating()
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            indicator.center = window.center
+            window.addSubview(indicator)
+            indicator.startAnimating()
+        }
     }
     
     func hideLoading() {
@@ -49,6 +52,11 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         tableView.reloadData()
     }
     
+    @IBAction func reloadBtnAction(_ sender: Any) {
+        Task {
+            await presenter?.fetchLeagues()
+        }
+    }
     
 }
 
