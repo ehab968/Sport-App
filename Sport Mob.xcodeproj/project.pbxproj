@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1BE1362FA176D4008794EF /* Alamofire */; };
+		6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */; };
+		6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */; };
 		6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DB44CE42FA64B5400F40AE6 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6D2957142F9FFE8000B77185 /* Sport Mob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Mob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LeagueEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LeagueEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -52,6 +56,8 @@
 		6D29570B2F9FFE8000B77185 = {
 			isa = PBXGroup;
 			children = (
+				6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */,
+				6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */,
 				6D2957162F9FFE8000B77185 /* Sport Mob */,
 				6D2957152F9FFE8000B77185 /* Products */,
 			);
@@ -145,6 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */,
+				6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
