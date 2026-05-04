@@ -7,20 +7,25 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+
 
 class LeagueDetailsCollectionViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let layout = UICollectionViewCompositionalLayout{ index , enviornement in
+            if index == 0 {
+                return self.setupNextMatchsSection()
+            }else if index == 1 {
+                return self.setupLatestMatchesSection()
+                }
+            return self.setupLeagueTeams()
+             
+           
+        }
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        collectionView.setCollectionViewLayout(layout, animated: true)
     }
 
     /*
@@ -32,26 +37,91 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setupNextMatchsSection() -> NSCollectionLayoutSection{
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1) , heightDimension:.fractionalHeight(1) )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(140))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 16, bottom: 5, trailing: 8)
+        
+        
+        return section
+    }
+    
+    
+    func setupLatestMatchesSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        
+        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 15, trailing: 16)
+        
+        return section
+    }
+    
+    
+    func setupLeagueTeams() -> NSCollectionLayoutSection{
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1) , heightDimension:.fractionalHeight(1) )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: .absolute(140))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 8, bottom: 5, trailing: 5)
+        
+        
+        return section
+    }
+    
+    
+    
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 3
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return 15
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
-        return cell
+        
+        switch  indexPath.section {
+        case 0 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextMatchesCell", for: indexPath) as! NextMatchesCollectionViewCell
+
+            return cell
+            
+        case 1 :
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMatchesCell", for: indexPath) as! LatestMatchesCollectionViewCell
+
+            return cell
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "leagueTeamsCell", for: indexPath) as! LeagueTeamsCollectionViewCell
+
+            return cell
+            
+        }
     }
 
     // MARK: UICollectionViewDelegate
