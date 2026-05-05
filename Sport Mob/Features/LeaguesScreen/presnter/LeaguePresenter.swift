@@ -11,12 +11,14 @@ protocol LeaguePresenterProtocol {
     func fetchLeagues() async
     func getleaguesCount() -> Int
     func getLeague(at index: Int) -> League
+    func addLeagueToFavorites(league: League)
 }
 
 class LeaguePresenter: LeaguePresenterProtocol {
     
     weak var view: LeagueTableViewControllerProtocol?
     private let networkManager = NetworkManager.shared
+    private let coreDataManager = CoreDataManager.shared
     private var leagues : [League] = []
     var sportEndpointName : String
 
@@ -38,6 +40,21 @@ class LeaguePresenter: LeaguePresenterProtocol {
             view?.showError(message: error.localizedDescription)
         }
         
+    }
+    func addLeagueToFavorites(league: League) {
+        Task(priority: .background){
+            do{
+                try coreDataManager.saveFavLeague(league: league)
+                await MainActor.run{
+                    view?.onSaveLeagueSuccess()
+                }
+            }
+            catch{
+                await MainActor.run{
+                    view?.onSaveLeagueFailure(message: "Failed to save league: \(error.localizedDescription)")
+                }
+            }
+        }
     }
 }
 

@@ -7,16 +7,21 @@
 
 import UIKit
 import SDWebImage
+import RxSwift
+import RxCocoa
 protocol LeagueTableViewControllerProtocol: AnyObject {
     func showLoading()
     func hideLoading()
     func showError(message: String)
     func reloadData()
+    func onSaveLeagueSuccess()
+    func onSaveLeagueFailure(message: String)
 }
 
 
 
 class LeagueTableViewController: UITableViewController , LeagueTableViewControllerProtocol {
+    
     var presenter: LeaguePresenterProtocol?
     let indicator = UIActivityIndicatorView(style: .large)
     
@@ -50,6 +55,13 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     func reloadData() {
         tableView.reloadData()
+    }
+    func onSaveLeagueSuccess() {
+        showAlert(title: "Success", message: "League added to favorites")
+    }
+    
+    func onSaveLeagueFailure(message: String) {
+        showAlert(title: "Error", message: message)
     }
     
     @IBAction func reloadBtnAction(_ sender: Any) {
@@ -96,6 +108,17 @@ extension LeagueTableViewController {
             cell.countryImage.image = placeholder
         }
         
+        // fav button action
+        cell.favBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                if let league = league {
+                    self?.presenter?.addLeagueToFavorites(league: league)
+                    cell.favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                }
+                else {
+                    self?.showAlert(title: "Error", message: "League data is unavailable")
+                }
+            }).disposed(by: cell.disposeBag)
         return cell
     }
     

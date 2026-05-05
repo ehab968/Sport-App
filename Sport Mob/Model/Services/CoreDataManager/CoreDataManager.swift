@@ -9,12 +9,13 @@ import Foundation
 import CoreData
 
 protocol CoreDataManagerProtocol {
-    func saveFavLeague(league : League)
+    func saveFavLeague(league : League) throws
     func fetchFavLeagues() throws -> [LeagueEntity]
 }
 
 
 class CoreDataManager : CoreDataManagerProtocol {
+    
     static let shared = CoreDataManager()
     let persistentContainer: NSPersistentContainer
     lazy var viewContext = persistentContainer.viewContext
@@ -29,20 +30,15 @@ class CoreDataManager : CoreDataManagerProtocol {
         viewContext.automaticallyMergesChangesFromParent = true
     }
     
-    func saveFavLeague(league : League) {
+    func saveFavLeague(league : League) throws {
         let favLeague = LeagueEntity(context: viewContext)
         favLeague.id = Int64(league.leagueKey)
         favLeague.leagueName = league.leagueName
         favLeague.leagueImage = league.leagueLogo
         favLeague.countryName = league.countryName
         favLeague.countryImage = league.countryLogo
-        do {
-            try viewContext.save()
         
-        }
-        catch {
-            print("Failed to save favorite league: \(error)")
-        }
+        try viewContext.save()
     }
     func fetchFavLeagues() throws -> [LeagueEntity] {
         let request = LeagueEntity.fetchRequest()

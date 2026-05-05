@@ -241,6 +241,7 @@
                                 <connections>
                                     <outlet property="countryImage" destination="GpI-Ks-kce" id="35w-d8-ihk"/>
                                     <outlet property="countryLabel" destination="P9f-jb-ZjF" id="iQG-Pt-Hm4"/>
+                                    <outlet property="favBtn" destination="2ga-0R-jOa" id="rVL-Le-0Ca"/>
                                     <outlet property="leagueImage" destination="laU-El-RbT" id="5Hp-yY-XS0"/>
                                     <outlet property="leagueLabel" destination="OsW-1a-LAN" id="v3C-xL-HLi"/>
                                 </connections>

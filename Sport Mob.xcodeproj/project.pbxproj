@@ -10,6 +10,7 @@
 		6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1BE1362FA176D4008794EF /* Alamofire */; };
 		6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */; };
 		6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */; };
+		6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6D9A10A82FA9E544001EFD10 /* RxCocoa */; };
 		6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DB44CE42FA64B5400F40AE6 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */,
 				6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */,
 				6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */,
 			);
@@ -93,6 +95,7 @@
 			packageProductDependencies = (
 				6D1BE1362FA176D4008794EF /* Alamofire */,
 				6DB44CE42FA64B5400F40AE6 /* SDWebImage */,
+				6D9A10A82FA9E544001EFD10 /* RxCocoa */,
 			);
 			productName = "Sport Mob";
 			productReference = 6D2957142F9FFE8000B77185 /* Sport Mob.app */;
@@ -125,6 +128,7 @@
 			packageReferences = (
 				6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D2957152F9FFE8000B77185 /* Products */;
@@ -376,6 +380,14 @@
 				minimumVersion = 5.11.2;
 			};
 		};
+		6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.10.2;
+			};
+		};
 		6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -391,6 +403,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		6D9A10A82FA9E544001EFD10 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
 		};
 		6DB44CE42FA64B5400F40AE6 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
