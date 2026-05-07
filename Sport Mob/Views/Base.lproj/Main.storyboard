@@ -157,23 +157,23 @@
                                             <rect key="frame" x="8" y="0.0" width="98.333333333333329" height="99"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="exn-EP-UWn">
-                                            <rect key="frame" x="116.33333333333334" y="29" width="110.33333333333334" height="44"/>
+                                            <rect key="frame" x="116.33333333333331" y="29" width="163" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="200" text="League name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-gx-sff">
-                                                    <rect key="frame" x="0.0" y="0.0" width="110.33333333333333" height="21.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="163" height="21.666666666666668"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="country name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Go-Me-euY">
-                                                    <rect key="frame" x="0.0" y="24.666666666666664" width="110.33333333333333" height="19.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="24.666666666666664" width="163" height="19.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk3-q9-I3E">
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk3-q9-I3E">
                                             <rect key="frame" x="287.33333333333331" y="33" width="85.666666666666686" height="33.333333333333343"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Remove">
@@ -187,6 +187,7 @@
                                         <constraint firstItem="qu2-cV-s4a" firstAttribute="leading" secondItem="8ym-d7-xTl" secondAttribute="leading" constant="8" id="CIY-nn-Onr"/>
                                         <constraint firstItem="exn-EP-UWn" firstAttribute="centerY" secondItem="8ym-d7-xTl" secondAttribute="centerY" constant="1.5" id="M1E-OE-0UW"/>
                                         <constraint firstItem="exn-EP-UWn" firstAttribute="leading" secondItem="qu2-cV-s4a" secondAttribute="trailing" constant="10" id="MK3-lk-NES"/>
+                                        <constraint firstItem="pk3-q9-I3E" firstAttribute="leading" secondItem="exn-EP-UWn" secondAttribute="trailing" constant="8" id="Pgr-WZ-BOi"/>
                                         <constraint firstItem="pk3-q9-I3E" firstAttribute="centerY" secondItem="8ym-d7-xTl" secondAttribute="centerY" id="Uhr-ex-W7f"/>
                                         <constraint firstAttribute="bottom" secondItem="qu2-cV-s4a" secondAttribute="bottom" id="Unp-Jv-kbP"/>
                                         <constraint firstItem="qu2-cV-s4a" firstAttribute="top" secondItem="8ym-d7-xTl" secondAttribute="top" id="VDr-P6-2cA"/>

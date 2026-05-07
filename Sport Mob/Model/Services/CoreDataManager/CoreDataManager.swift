@@ -19,6 +19,7 @@ class CoreDataManager : CoreDataManagerProtocol {
     static let shared = CoreDataManager()
     let persistentContainer: NSPersistentContainer
     lazy var viewContext = persistentContainer.viewContext
+//    lazy var privateContext: NSManagedObjectContext = persistentContainer.newBackgroundContext()
     private init() {
         persistentContainer = NSPersistentContainer(name: "SportDataModel")
         persistentContainer.loadPersistentStores { (description, error) in
@@ -28,6 +29,7 @@ class CoreDataManager : CoreDataManagerProtocol {
         }
         viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         viewContext.automaticallyMergesChangesFromParent = true
+//        privateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
     func saveFavLeague(league : League) throws {
@@ -79,4 +81,32 @@ class CoreDataManager : CoreDataManagerProtocol {
             throw error
         }
     }
+}
+
+// just an example of how to use background context with view context
+extension CoreDataManager {
+    
+    //  ============ Background context saving example ===============
+    
+    
+//    func saveFavLeagueBackground(league: League) throws {
+//            privateContext.perform { [weak self] in
+//                guard let self = self else { return }
+//
+//                let favLeague = LeagueEntity(context: self.privateContext)
+//                favLeague.id = Int64(league.leagueKey)
+//                favLeague.leagueName = league.leagueName
+//                favLeague.leagueImage = league.leagueLogo
+//                favLeague.countryName = league.countryName
+//                favLeague.countryImage = league.countryLogo
+//
+//                do {
+//                    try self.privateContext.save()
+//                    print("CoreData Saved in background")
+//                } catch {
+//                    print("CoreData Error saving: \(error)")
+//                }
+//            }
+//        }
+    
 }
