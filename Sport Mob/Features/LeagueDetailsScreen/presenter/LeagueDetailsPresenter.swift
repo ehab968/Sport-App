@@ -9,7 +9,8 @@ import Foundation
 protocol LeagueDetailsPresenterProtocol {
     func fetchLeagueDetails() async
     func getItemsCount(for section: Int) -> Int
-    func getMatch(at index: Int, for section: Int) -> LeagueDetails? 
+    func getMatch(at index: Int, for section: Int) -> LeagueDetails?
+    func getTeam(at index : Int) -> TeamsModel?
 }
 
 class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
@@ -17,6 +18,8 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
     private var sportEndpointName : String?
     private var nextMatchesList : [LeagueDetails] = []
     private var latestMatchesList : [LeagueDetails] = []
+    private var teamsList : [TeamsModel] = []
+    
     
     
     weak var view : LeagueDetailsProtocol?
@@ -56,10 +59,18 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
                         
                 ]
             )
+            
+            
+            let teamsResponse : TeamsRsponse = try await
+            NetworkManager.shared.getData(endpoint: endpoint, met: "Teams" ,  parameters: [
+                "leagueId": id,
+               
+            ])
 
             
             self.nextMatchesList = nextResponse.result ?? []
             self.latestMatchesList = latestResponse.result ?? []
+            self.teamsList = teamsResponse.result ?? []
             print("Next Matches Count: \(nextMatchesList.count)")
             print("Latest Matches Count: \(latestMatchesList.count)")
             
@@ -77,6 +88,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
             switch section {
             case 0: return nextMatchesList.count
             case 1: return latestMatchesList.count
+            case 2: return teamsList.count
             default: return 0
             }
         }
@@ -88,6 +100,10 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
                 return latestMatchesList[index]
             }
         }
+    
+    func getTeam(at index : Int) -> TeamsModel? {
+        return teamsList[index]
+    }
     
     
     

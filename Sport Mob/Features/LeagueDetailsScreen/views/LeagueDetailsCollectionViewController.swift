@@ -157,14 +157,14 @@ class LeagueDetailsCollectionViewController:
             cell.matchDate.text = nextMatch?.eventDate
             cell.matchTime.text = nextMatch?.eventTime
             if let firstTeamLogo = nextMatch?.homeTeamLogo, let url = URL(string: firstTeamLogo) {
-                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
             } else {
-                cell.firstTeamImage.image = UIImage.league
+                cell.firstTeamImage.image = UIImage.undifinedTeam
             }
             if let secondTeamLogo = nextMatch?.awayTeamLogo, let url = URL(string: secondTeamLogo) {
-                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
             } else {
-                cell.secondTeamImage.image = UIImage.league
+                cell.secondTeamImage.image = UIImage.undifinedTeam
             }
             return cell
             
@@ -177,17 +177,43 @@ class LeagueDetailsCollectionViewController:
             cell.secondTeamName.text = lastMatch?.AwayTeamName
             cell.matchResult.text = lastMatch?.eventFinalResult
             if let firstTeamLogo = lastMatch?.homeTeamLogo, let url = URL(string: firstTeamLogo) {
-                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
             } else {
-                cell.firstTeamImage.image = UIImage.league
+                cell.firstTeamImage.image = UIImage.undifinedTeam
             }
             if let secondTeamLogo = lastMatch?.awayTeamLogo, let url = URL(string: secondTeamLogo) {
-                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
             } else {
-                cell.secondTeamImage.image = UIImage.league
+                cell.secondTeamImage.image = UIImage.undifinedTeam
             }
 
             return cell
+            
+            
+        case 2 :
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "leagueTeamsCell", for: indexPath) as! LeagueTeamsCollectionViewCell
+            let Team = leagueDetailsPresenter?.getTeam(at: indexPath.row)
+            if Team?.teamName == "Brighton & Hove Albion"{
+                cell.teamName.text = "Brighton"
+            }else if Team?.teamName == "Wolverhampton Wanderers" {
+                cell.teamName.text = "Wolves"
+            }else {
+                if let teamName = Team?.teamName {
+                    cell.teamName.text = teamName
+                }else{
+                  cell.teamName.text = "Unknown Team"
+              }
+            }
+                if let TeamLogo = Team?.teamLogo, let url = URL(string: TeamLogo) {
+                    cell.teamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
+                } else {
+                    cell.teamImage.image = UIImage.undifinedTeam
+                }
+                
+            
+            return cell
+            
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "leagueTeamsCell", for: indexPath) as! LeagueTeamsCollectionViewCell
 
