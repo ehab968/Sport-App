@@ -15,6 +15,7 @@ class NextMatchesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var matchDate: UILabel!
     @IBOutlet weak var secondTeamImage: UIImageView!
     
+    @IBOutlet weak var matchTime: UILabel!
     
     
     

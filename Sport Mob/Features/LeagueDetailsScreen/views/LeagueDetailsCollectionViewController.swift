@@ -6,11 +6,21 @@
 //
 
 import UIKit
+import SDWebImage
+
+protocol LeagueDetailsProtocol : AnyObject {
+    func showLoading()
+    func hideLoading()
+    func showError(message: String)
+    func reloadData()
+}
 
 
 
-class LeagueDetailsCollectionViewController: UICollectionViewController {
-
+class LeagueDetailsCollectionViewController:
+    UICollectionViewController , LeagueDetailsProtocol {
+    let indicator = UIActivityIndicatorView(style: .large)
+    var leagueDetailsPresenter : LeagueDetailsPresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,7 +36,35 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         }
 
         collectionView.setCollectionViewLayout(layout, animated: true)
+        
+        Task {
+            await leagueDetailsPresenter?.fetchLeagueDetails()
+        }
     }
+    
+    
+    func showLoading() {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            indicator.center = window.center
+            window.addSubview(indicator)
+            indicator.startAnimating()
+        }
+    }
+    
+    func reloadData() {
+        self.collectionView.reloadData()
+    }
+    
+    func hideLoading() {
+        indicator.stopAnimating()
+        indicator.removeFromSuperview()
+    }
+    
+    func showError(message: String) {
+        showAlert(title: "Error", message: message)
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -43,7 +81,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1) , heightDimension:.fractionalHeight(1) )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9), heightDimension: .absolute(140))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.95), heightDimension: .absolute(140))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 8, bottom: 0, trailing: 8)
         
@@ -101,7 +139,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 15
+        switch section {
+        case 0 : return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
+        case 1 : return leagueDetailsPresenter?.getItemsCount(for: 1) ?? 0
+        default: return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
+        }
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -109,11 +151,41 @@ class LeagueDetailsCollectionViewController: UICollectionViewController {
         switch  indexPath.section {
         case 0 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextMatchesCell", for: indexPath) as! NextMatchesCollectionViewCell
-
+            let nextMatch = leagueDetailsPresenter?.getMatch(at : indexPath.row, for : 0)
+            cell.firstTeamName.text = nextMatch?.HomeTeamName
+            cell.secondTeamName.text = nextMatch?.AwayTeamName
+            cell.matchDate.text = nextMatch?.eventDate
+            cell.matchTime.text = nextMatch?.eventTime
+            if let firstTeamLogo = nextMatch?.homeTeamLogo, let url = URL(string: firstTeamLogo) {
+                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            } else {
+                cell.firstTeamImage.image = UIImage.league
+            }
+            if let secondTeamLogo = nextMatch?.awayTeamLogo, let url = URL(string: secondTeamLogo) {
+                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            } else {
+                cell.secondTeamImage.image = UIImage.league
+            }
             return cell
             
         case 1 :
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMatchesCell", for: indexPath) as! LatestMatchesCollectionViewCell
+            let lastMatch = leagueDetailsPresenter?.getMatch(at : indexPath.row, for : 1)
+            
+            cell.firstTeamName.text = lastMatch?.HomeTeamName
+            cell.secondTeamName.text = lastMatch?.AwayTeamName
+            cell.matchResult.text = lastMatch?.eventFinalResult
+            if let firstTeamLogo = lastMatch?.homeTeamLogo, let url = URL(string: firstTeamLogo) {
+                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            } else {
+                cell.firstTeamImage.image = UIImage.league
+            }
+            if let secondTeamLogo = lastMatch?.awayTeamLogo, let url = URL(string: secondTeamLogo) {
+                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            } else {
+                cell.secondTeamImage.image = UIImage.league
+            }
 
             return cell
         default:
