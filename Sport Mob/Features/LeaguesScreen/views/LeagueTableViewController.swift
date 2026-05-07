@@ -9,12 +9,15 @@ import UIKit
 import SDWebImage
 import RxSwift
 import RxCocoa
+import Toast
+
 protocol LeagueTableViewControllerProtocol: AnyObject {
     func showLoading()
     func hideLoading()
     func showError(message: String)
     func reloadData()
     func onSaveLeagueSuccess()
+    func onRemoveLeagueSuccess()
     func onSaveLeagueFailure(message: String)
 }
 
@@ -57,8 +60,20 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         tableView.reloadData()
     }
     func onSaveLeagueSuccess() {
-        showAlert(title: "Success", message: "League added to favorites")
+//        showAlert(title: "Success", message: "League added to favorites")
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            window.makeToast("League added to favorites", duration: 1.5, position: .bottom)
+        }
     }
+    func onRemoveLeagueSuccess() {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = scene.windows.first {
+            window.makeToast("League removed from favorites", duration: 1.5, position: .bottom)
+        }
+    }
+    
+    
     
     func onSaveLeagueFailure(message: String) {
         showAlert(title: "Error", message: message)
@@ -87,6 +102,7 @@ extension LeagueTableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        // trigger cell data fetching and configure cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! LeagueCell
         let league = presenter?.getLeague(at: indexPath.section)
         cell.leagueLabel.text = league?.leagueName
@@ -98,8 +114,6 @@ extension LeagueTableViewController {
             cell.leagueImage.image = UIImage.league
         }
         
-
-        
         let placeholder = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
         
         if let logoString = league?.countryLogo, let url = URL(string: logoString) {
@@ -108,15 +122,27 @@ extension LeagueTableViewController {
             cell.countryImage.image = placeholder
         }
         
-        // fav button action
+        
+        // configure fav button state
+        var isFav = presenter?.isLeagueFav(at: indexPath.section) ?? false
+        let favIcon = isFav ? "heart.fill" : "heart"
+        cell.favBtn.setImage(UIImage(systemName: favIcon), for: .normal)
+        
+        
+        // fav button action with RxSwift
         cell.favBtn.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                if let league = league {
+                guard let league = league else { print("League data is unavailable"); return }
+                if isFav == false {
                     self?.presenter?.addLeagueToFavorites(league: league)
                     cell.favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                    isFav = true
                 }
                 else {
-                    self?.showAlert(title: "Error", message: "League data is unavailable")
+                    self?.presenter?.removeLeagueFromFav(at: indexPath.section)
+                    cell.favBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+                    isFav = false
                 }
             }).disposed(by: cell.disposeBag)
         return cell

@@ -12,6 +12,8 @@ protocol LeaguePresenterProtocol {
     func getleaguesCount() -> Int
     func getLeague(at index: Int) -> League
     func addLeagueToFavorites(league: League)
+    func isLeagueFav(at index : Int) -> Bool
+    func removeLeagueFromFav(at index: Int)
 }
 
 class LeaguePresenter: LeaguePresenterProtocol {
@@ -53,6 +55,29 @@ class LeaguePresenter: LeaguePresenterProtocol {
                 await MainActor.run{
                     view?.onSaveLeagueFailure(message: "Failed to save league: \(error.localizedDescription)")
                 }
+            }
+        }
+    }
+    func isLeagueFav(at index : Int) -> Bool{
+        let league = leagues[index]
+        do{
+            return try coreDataManager.isFav(leagueId: league.leagueKey)
+        }
+        catch {
+            print("Error checking if league is favorite: \(error)")
+            return false
+        }
+    }
+    func removeLeagueFromFav(at index: Int) {
+        let league = leagues[index]
+        Task(priority: .background){
+            do{
+                try coreDataManager.removeFavLeague(leagueId: league.leagueKey)
+                view?.onRemoveLeagueSuccess()
+            }
+            catch{
+                print("Failed to remove favorite league: \(error)")
+                view?.showError(message: "Failed to remove league from favorites: \(error.localizedDescription)")
             }
         }
     }

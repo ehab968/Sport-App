@@ -40,6 +40,21 @@ class CoreDataManager : CoreDataManagerProtocol {
         
         try viewContext.save()
     }
+    func removeFavLeague(leagueId: Int) throws {
+        let request = LeagueEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", leagueId)
+        do {
+            let results = try viewContext.fetch(request)
+            for object in results {
+                viewContext.delete(object)
+            }
+            try viewContext.save()
+        }
+        catch {
+            print("Failed to remove favorite league: \(error)")
+            throw error
+        }
+    }
     func fetchFavLeagues() throws -> [LeagueEntity] {
         let request = LeagueEntity.fetchRequest()
         do {
@@ -51,5 +66,17 @@ class CoreDataManager : CoreDataManagerProtocol {
             throw error
         }
     }
-        
+    
+    func isFav(leagueId: Int) throws -> Bool {
+        let request = LeagueEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %d", leagueId)
+        do {
+            let results = try viewContext.fetch(request)
+            return !results.isEmpty
+        }
+        catch {
+            print("Failed to check if league is favorite: \(error)")
+            throw error
+        }
+    }
 }

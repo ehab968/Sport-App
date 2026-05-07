@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1BE1362FA176D4008794EF /* Alamofire */; };
+		6D37A3902FAA8B2200BC6711 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6D37A38F2FAA8B2200BC6711 /* Toast */; };
 		6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */; };
 		6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */; };
 		6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6D9A10A82FA9E544001EFD10 /* RxCocoa */; };
@@ -46,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D37A3902FAA8B2200BC6711 /* Toast in Frameworks */,
 				6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */,
 				6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */,
 				6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */,
@@ -96,6 +98,7 @@
 				6D1BE1362FA176D4008794EF /* Alamofire */,
 				6DB44CE42FA64B5400F40AE6 /* SDWebImage */,
 				6D9A10A82FA9E544001EFD10 /* RxCocoa */,
+				6D37A38F2FAA8B2200BC6711 /* Toast */,
 			);
 			productName = "Sport Mob";
 			productReference = 6D2957142F9FFE8000B77185 /* Sport Mob.app */;
@@ -129,6 +132,7 @@
 				6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */,
 				6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D2957152F9FFE8000B77185 /* Products */;
@@ -380,6 +384,14 @@
 				minimumVersion = 5.11.2;
 			};
 		};
+		6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/toast-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
 		6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -403,6 +415,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		6D37A38F2FAA8B2200BC6711 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */;
+			productName = Toast;
 		};
 		6D9A10A82FA9E544001EFD10 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
