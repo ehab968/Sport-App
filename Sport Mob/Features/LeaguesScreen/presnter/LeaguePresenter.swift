@@ -11,14 +11,17 @@ protocol LeaguePresenterProtocol {
     func fetchLeagues() async
     func getleaguesCount() -> Int
     func getLeague(at index: Int) -> League
+    var sportEndpointName : String { get set }
 }
 
 class LeaguePresenter: LeaguePresenterProtocol {
     
+    
+    
     weak var view: LeagueTableViewControllerProtocol?
     private let networkManager = NetworkManager.shared
     private var leagues : [League] = []
-    var sportEndpointName : String
+    var sportEndpointName: String
 
     init(view: LeagueTableViewControllerProtocol?, sportEndpointName: String) {
         self.view = view

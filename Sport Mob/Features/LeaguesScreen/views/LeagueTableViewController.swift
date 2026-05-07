@@ -98,9 +98,20 @@ extension LeagueTableViewController {
         
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let leagueDetailsVc = storyboard?.instantiateViewController(identifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController
+        leagueDetailsVc?.leagueDetailsPresenter = LeagueDetailsPresenter(
+            leagueId: String(presenter?.getLeague(at: indexPath.row).leagueKey ?? 0),
+            sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
+            , view: leagueDetailsVc
+        )
+        navigationController?.pushViewController(leagueDetailsVc!, animated: true)
+    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    
     
 }
