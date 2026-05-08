@@ -16,9 +16,9 @@ class FavoriteTableViewController: UITableViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = FavLeaguePresenter()
+        presenter?.fetchFavLeaguesFromCoreData()
         setupBinding()
         setupState()
-        presenter?.fetchFavLeaguesFromCoreData()
     }
     
     

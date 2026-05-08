@@ -69,8 +69,7 @@ extension FavLeaguePresenter{
         fetchRescultsController.delegate = self
         
         do {
-            try fetchRescultsController.performFetch()
-            favLeaguesObservable.accept(fetchRescultsController.fetchedObjects ?? [])
+            try fetchRescultsController.performFetch()  // => it is the start button for FRC to start listening t
         } catch {
             print("FRC Initial Fetch Error: \(error)")
         }
