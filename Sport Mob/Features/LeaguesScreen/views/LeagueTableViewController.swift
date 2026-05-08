@@ -150,7 +150,7 @@ extension LeagueTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let leagueDetailsVc = storyboard?.instantiateViewController(identifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController
         leagueDetailsVc?.leagueDetailsPresenter = LeagueDetailsPresenter(
-            leagueId: String(presenter?.getLeague(at: indexPath.row).leagueKey ?? 0),
+            leagueId: String(presenter?.getLeague(at: indexPath.section).leagueKey ?? 0),
             sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
             , view: leagueDetailsVc
         )
