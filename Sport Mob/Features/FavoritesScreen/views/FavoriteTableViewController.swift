@@ -6,84 +6,67 @@
 //
 
 import UIKit
-
-class FavoriteTableViewController: UITableViewController {
-
+import RxSwift
+import RxCocoa
+import SDWebImage
+import Toast
+class FavoriteTableViewController: UITableViewController{
+    var presenter: FavLeaguePresenter?
+    let disposeBag = DisposeBag()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        presenter = FavLeaguePresenter()
+        presenter?.fetchFavLeaguesFromCoreData()
+        setupBinding()
+        setupState()
     }
+    
+    
+    func setupBinding() {
+        tableView.dataSource = nil
+        presenter?.favLeaguesObservable
+            .bind(to: tableView.rx.items(cellIdentifier: "favCell", cellType: FavLeagueCell.self)) {
+                [weak self] (row, league, cell) in
+                guard let self = self else { return }
+                cell.setupCell(
+                    leagueName: league.leagueName ?? "",
+                    countryName: league.countryName ?? "",
+                    leagueImageURL: league.leagueImage ?? ""
+                ){
+                    self.presenter?.removeLeagueFromFav(at: Int(league.id))
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    
+    func setupState(){
+        presenter?.errorMessage
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] message in
+                guard let self = self else { return }
+                self.showAlert(title: "Error", message: message)
+            })
+            .disposed(by: disposeBag)
+        presenter?.removeSuccessState
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = scene.windows.first {
+                    window.makeToast("League removed from favorites", duration: 1.5, position: .bottom)
+                }
+            }).disposed(by: disposeBag)
+    }
+    
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
     }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }
