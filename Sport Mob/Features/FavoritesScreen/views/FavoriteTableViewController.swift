@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import SDWebImage
+import Toast
 class FavoriteTableViewController: UITableViewController{
     var presenter: FavLeaguePresenter?
     let disposeBag = DisposeBag()
@@ -16,9 +17,7 @@ class FavoriteTableViewController: UITableViewController{
         super.viewDidLoad()
         presenter = FavLeaguePresenter()
         setupBinding()
-    }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        setupState()
         presenter?.fetchFavLeaguesFromCoreData()
     }
     
@@ -26,20 +25,22 @@ class FavoriteTableViewController: UITableViewController{
     func setupBinding() {
         tableView.dataSource = nil
         presenter?.favLeaguesObservable
-            .bind(to: tableView.rx.items(cellIdentifier: "cell", cellType: FavLeagueCell.self)) { (row, league, cell) in
-                cell.favLeagueName.text = league.leagueName
-                cell.favLeagueCountryName.text = league.countryName
-                
-                if let logoString = league.leagueImage, let url = URL(string: logoString) {
-                    cell.favLeagueImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            .bind(to: tableView.rx.items(cellIdentifier: "favCell", cellType: FavLeagueCell.self)) {
+                [weak self] (row, league, cell) in
+                guard let self = self else { return }
+                cell.setupCell(
+                    leagueName: league.leagueName ?? "",
+                    countryName: league.countryName ?? "",
+                    leagueImageURL: league.leagueImage ?? ""
+                ){
+                    self.presenter?.removeLeagueFromFav(at: Int(league.id))
                 }
-                else {
-                    cell.favLeagueImage.image = UIImage.league
-                }
-               
             }
             .disposed(by: disposeBag)
-        
+    }
+    
+    
+    func setupState(){
         presenter?.errorMessage
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] message in
@@ -47,6 +48,14 @@ class FavoriteTableViewController: UITableViewController{
                 self.showAlert(title: "Error", message: message)
             })
             .disposed(by: disposeBag)
+        presenter?.removeSuccessState
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: {
+                if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                   let window = scene.windows.first {
+                    window.makeToast("League removed from favorites", duration: 1.5, position: .bottom)
+                }
+            }).disposed(by: disposeBag)
     }
     
 

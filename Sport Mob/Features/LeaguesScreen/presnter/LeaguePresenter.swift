@@ -20,7 +20,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
     
     weak var view: LeagueTableViewControllerProtocol?
     private let networkManager = NetworkManager.shared
-    private let coreDataManager = CoreDataManager.shared
+    private let coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
     private var leagues : [League] = []
     var sportEndpointName : String
 

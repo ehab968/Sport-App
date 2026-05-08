@@ -11,6 +11,8 @@ import CoreData
 protocol CoreDataManagerProtocol {
     func saveFavLeague(league : League) throws
     func fetchFavLeagues() throws -> [LeagueEntity]
+    func removeFavLeague(leagueId: Int) throws
+    func isFav(leagueId: Int) throws -> Bool
 }
 
 
@@ -32,6 +34,7 @@ class CoreDataManager : CoreDataManagerProtocol {
 //        privateContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
     
+    
     func saveFavLeague(league : League) throws {
         let favLeague = LeagueEntity(context: viewContext)
         favLeague.id = Int64(league.leagueKey)
@@ -42,6 +45,8 @@ class CoreDataManager : CoreDataManagerProtocol {
         
         try viewContext.save()
     }
+    
+    
     func removeFavLeague(leagueId: Int) throws {
         let request = LeagueEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %d", leagueId)
@@ -57,6 +62,8 @@ class CoreDataManager : CoreDataManagerProtocol {
             throw error
         }
     }
+    
+    
     func fetchFavLeagues() throws -> [LeagueEntity] {
         let request = LeagueEntity.fetchRequest()
         do {
