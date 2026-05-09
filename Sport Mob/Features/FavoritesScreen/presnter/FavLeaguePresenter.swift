@@ -8,11 +8,16 @@
 import Foundation
 import RxSwift
 import RxRelay
+import RxCocoa
 import CoreData
 protocol FavLeaguePresenterProtocol {
     func fetchFavLeaguesFromCoreData()
     func removeLeagueFromFav(at index: Int)
     func setupFRC()
+    var favLeaguesDriver: Driver<[LeagueEntity]> { get }
+    var errorDriver: Driver<String> { get }
+    var removeSuccessDriver: Driver<Void> { get }
+    var noFavDriver: Driver<[LeagueEntity]> { get }
     
 }
 
@@ -21,9 +26,22 @@ class FavLeaguePresenter:NSObject, NSFetchedResultsControllerDelegate, FavLeague
     private let coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
     private var fetchRescultsController: NSFetchedResultsController<LeagueEntity>!
     
-    let favLeaguesObservable = BehaviorRelay<[LeagueEntity]>(value: []) // => it requires an initial value
-    let errorMessage = PublishSubject<String>() // => it doesn't require an initial value, use it to send an event only
-    let removeSuccessState = PublishSubject<Void>()
+    private let favLeaguesObservable = BehaviorRelay<[LeagueEntity]>(value: []) // => it requires an initial value
+    private let errorMessage = PublishSubject<String>() // => it doesn't require an initial value, use it to send an event only
+    private let removeSuccessState = PublishSubject<Void>()
+    
+    var favLeaguesDriver: Driver<[LeagueEntity]> {
+        return favLeaguesObservable.asDriver()
+    }
+    var errorDriver: Driver<String> {
+        return errorMessage.asDriver(onErrorJustReturn: "An unexpected error occurred")
+    }
+    var removeSuccessDriver: Driver<Void> {
+        return removeSuccessState.asDriver(onErrorJustReturn: ())
+    }
+    var noFavDriver: Driver<[LeagueEntity]> {
+        return favLeaguesObservable.asDriver()
+    }
     
     override init() {
         super.init()
