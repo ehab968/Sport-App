@@ -26,6 +26,7 @@ enum LocalizationKey: String {
     case cancelBtn = "cancel_btn"
     case leagueAddedMessage = "league_added_message"
     case leagueRemovedMessage = "league_removed_message"
+    case noFavoritesMessage = "no_fav_Leagues"
     var localized: String {
         let lang = UserDefaults.standard.stringArray(forKey: "AppleLanguages")?.first ?? "en"
         

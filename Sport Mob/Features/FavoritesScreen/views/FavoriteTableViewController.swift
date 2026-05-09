@@ -94,7 +94,7 @@ class FavoriteTableViewController: UITableViewController{
         imageView.tintColor = .gray
         
         let titleLabel = UILabel()
-        titleLabel.text = "No Favorite Leagues"
+        titleLabel.text = LocalizationKey.noFavoritesMessage.localized
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .darkGray
         titleLabel.textAlignment = .center
