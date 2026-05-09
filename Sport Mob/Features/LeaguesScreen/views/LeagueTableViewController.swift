@@ -30,13 +30,24 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.primary,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+    
+            
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            
+        
         Task {
             await presenter?.fetchLeagues()
         }
         self.navigationItem.title = LocalizationKey.leaguesTitle.localized
     }
-    
-    
     
     func showLoading() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -85,6 +96,9 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         }
     }
     
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension LeagueTableViewController {

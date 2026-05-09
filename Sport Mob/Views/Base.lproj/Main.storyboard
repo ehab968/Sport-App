@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -16,7 +17,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="BoO-pt-1h4">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="App BackGround"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x3s-Iz-XUr">
                             <size key="itemSize" width="271" height="242"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
@@ -77,8 +78,9 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2FB-21-4QV">
                                     <rect key="frame" x="16.000000000000004" y="12.333333333333334" width="51.333333333333343" height="25.333333333333329"/>
+                                    <color key="tintColor" name="TextColor"/>
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
-                                    <nil key="textColor"/>
+                                    <color key="textColor" name="TextColor"/>
                                     <nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="choose_your_sport"/>
@@ -97,15 +99,18 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="gnR-Xn-uXh">
-                        <barButtonItem key="leftBarButtonItem" title="theme" id="XAT-I2-auk"/>
+                        <barButtonItem key="leftBarButtonItem" title="theme" image="moon.fill" catalog="system" id="XAT-I2-auk">
+                            <color key="tintColor" name="Primary Color"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="globe.fill" catalog="system" id="9fs-xN-yMo">
-                            <color key="tintColor" systemColor="systemBlueColor"/>
+                            <color key="tintColor" name="Primary Color"/>
                             <connections>
                                 <action selector="localizationaction:" destination="2QR-fC-NJN" id="x7A-U2-xvv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="ThemeIcon" destination="XAT-I2-auk" id="mkQ-Wy-JHL"/>
                         <segue destination="EDk-Ri-fav" kind="push" id="rlP-M1-IoW"/>
                     </connections>
                 </collectionViewController>
@@ -125,6 +130,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="Primary Color"/>
                     </tabBar>
                     <connections>
                         <segue destination="DD8-nB-brY" kind="relationship" relationship="viewControllers" id="ZRO-jD-hKV"/>
@@ -142,7 +148,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="S7v-ab-MP5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="App BackGround"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavLeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="99" id="CS2-wL-Pkb" customClass="FavLeagueCell" customModule="Sport_Mob" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="99"/>
@@ -176,6 +182,8 @@
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled" title="Remove">
                                                 <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                                <color key="baseForegroundColor" name="TextButton"/>
+                                                <color key="baseBackgroundColor" name="Primary Color"/>
                                             </buttonConfiguration>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="remove_btn"/>
@@ -194,6 +202,7 @@
                                         <constraint firstItem="qu2-cV-s4a" firstAttribute="top" secondItem="8ym-d7-xTl" secondAttribute="top" id="VDr-P6-2cA"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="cell color"/>
                                 <connections>
                                     <outlet property="favLeagueCountryName" destination="9Go-Me-euY" id="NRT-ml-bmS"/>
                                     <outlet property="favLeagueImage" destination="qu2-cV-s4a" id="Vlc-eE-uQx"/>
@@ -220,7 +229,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="vSu-cf-fhh">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="App BackGround"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="113" id="OAd-SE-aJr" customClass="LeagueCell" customModule="Sport_Mob" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="113"/>
@@ -280,6 +289,7 @@
                                         <constraint firstItem="P9f-jb-ZjF" firstAttribute="leading" secondItem="OsW-1a-LAN" secondAttribute="leading" id="ski-NI-jN2"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="cell color"/>
                                 <constraints>
                                     <constraint firstItem="laU-El-RbT" firstAttribute="width" secondItem="OAd-SE-aJr" secondAttribute="width" multiplier="1:4" id="Stk-y3-B4r"/>
                                     <constraint firstAttribute="bottom" secondItem="laU-El-RbT" secondAttribute="bottom" id="USM-v8-WZX"/>
@@ -300,7 +310,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Leagues " id="azW-W8-BpL">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.backward" catalog="system" id="Kdc-35-nON">
+                            <color key="tintColor" name="Primary Color"/>
+                            <connections>
+                                <action selector="backBtnAction:" destination="EDk-Ri-fav" id="mXx-Ld-azx"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="arrow.clockwise" catalog="system" id="eUF-Ed-GKP">
+                            <color key="tintColor" name="Primary Color"/>
                             <connections>
                                 <action selector="reloadBtnAction:" destination="EDk-Ri-fav" id="HJe-R7-ZYL"/>
                             </connections>
@@ -318,7 +335,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="uMc-8X-Gt5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="App BackGround"/>
                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vvT-XC-wmu">
                             <size key="itemSize" width="392" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -612,20 +629,33 @@
     <resources>
         <image name="Arsenal" width="292" height="343"/>
         <image name="arrow.clockwise" catalog="system" width="110" height="128"/>
+        <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <image name="e.circle" catalog="system" width="128" height="123"/>
         <image name="globe.fill" catalog="system" width="128" height="119"/>
         <image name="heart" catalog="system" width="128" height="107"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
+        <namedColor name="App BackGround">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Primary Color">
+            <color red="0.13725490196078433" green="0.33725490196078434" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="TextButton">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextColor">
+            <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="cell color">
+            <color red="0.93800002336502075" green="0.93000000715255737" blue="0.92599999904632568" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

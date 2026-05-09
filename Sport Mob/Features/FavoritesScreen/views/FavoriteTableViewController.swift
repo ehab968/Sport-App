@@ -24,7 +24,7 @@ class FavoriteTableViewController: UITableViewController{
         
         appearance.shadowColor = .clear
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.primary,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         

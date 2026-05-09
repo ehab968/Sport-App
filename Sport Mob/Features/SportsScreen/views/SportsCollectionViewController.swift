@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 
 class SportsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
@@ -13,6 +15,11 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     let sportsArray = [("football",LocalizationKey.footballSport), ("basketball",LocalizationKey.basketballSport), ("tennis",LocalizationKey.tennisSport), ("cricket",LocalizationKey.cricketSport)]
     
     var presenter: SportsPresenterProtocol?
+    let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var themeIcon: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = SportsPresenter()
@@ -21,7 +28,7 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         
         appearance.shadowColor = .clear
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.primary,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         
@@ -30,7 +37,9 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         
         self.collectionView.delegate = self
         
-        
+        self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        self.themeIcon.tintColor = .primary
+        onThemeChanged()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -47,7 +56,62 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     @IBAction func localizationaction(_ sender: Any) {
         self.ShowLanguageAlert()
     }
+    
+    func onThemeChanged() {
+        themeIcon.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+//            guard let itemView = self.themeIcon.value(forKey: "view") as? UIView else { return }
+//            
+//            itemView.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+//            
+//            UIView.animate(withDuration: 0.5,
+//                           delay: 0,
+//                           usingSpringWithDamping: 0.4,
+//                           initialSpringVelocity: 3,
+//                           options: .allowUserInteraction,
+//                           animations: {
+//                itemView.transform = .identity
+//            })
+            
+            ThemeManager.shared.toogleTheme()
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.overrideUserInterfaceStyle = ThemeManager.shared.isDarkMode() ? .dark : .light
+            }
+            
+            self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        }).disposed(by: self.disposeBag)
+    }
+    
+//    @IBAction func onThemechanged(_ sender: UIButton) {
+//            let isCurrentlyDark = UserDefaults.standard.bool(forKey: Constants.Defaults.themeKey)
+//            let newDarkModeState = !isCurrentlyDark
+//            
+//            UserDefaults.standard.set(newDarkModeState, forKey: Constants.Defaults.themeKey)
+//            
+//            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+//               let window = windowScene.windows.first {
+//                window.overrideUserInterfaceStyle = newDarkModeState ? .dark : .light
+//            }
+//            
+//            let iconName = newDarkModeState ? Constants.Icons.darkMode : Constants.Icons.lightMode
+//            btnTheme.setImage(UIImage(systemName: iconName), for: .normal)
+//            
+//            
+//            // animation
+//            sender.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+//            UIView.animate(withDuration: 0.8,
+//                           delay: 0,
+//                           usingSpringWithDamping: 0.5,
+//                           initialSpringVelocity: 3,
+//                           options: .allowUserInteraction, animations: {
+//                sender.transform = .identity
+//            })
+//            ///////////////////////
+//        }
 }
+    
 
 
 
@@ -92,7 +156,7 @@ extension SportsCollectionViewController {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
             if let titleLabel = header.viewWithTag(100) as? UILabel {
-                titleLabel.textColor = .black
+                titleLabel.textColor = .text
             }
             return header
         }
