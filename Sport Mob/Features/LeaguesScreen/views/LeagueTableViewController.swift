@@ -33,7 +33,7 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         Task {
             await presenter?.fetchLeagues()
         }
-        
+        self.navigationItem.title = LocalizationKey.leaguesTitle.localized
     }
     
     
@@ -53,7 +53,7 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     }
     
     func showError(message: String) {
-        showAlert(title: "Error", message: message)
+        showAlert(title: LocalizationKey.errorTitle.localized, message: message)
     }
     
     func reloadData() {
@@ -63,20 +63,20 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
 //        showAlert(title: "Success", message: "League added to favorites")
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = scene.windows.first {
-            window.makeToast("League added to favorites", duration: 1.5, position: .bottom)
+            window.makeToast(LocalizationKey.leagueAddedMessage.localized, duration: 1.5, position: .bottom)
         }
     }
     func onRemoveLeagueSuccess() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = scene.windows.first {
-            window.makeToast("League removed from favorites", duration: 1.5, position: .bottom)
+            window.makeToast(LocalizationKey.leagueRemovedMessage.localized, duration: 1.5, position: .bottom)
         }
     }
     
     
     
     func onSaveLeagueFailure(message: String) {
-        showAlert(title: "Error", message: message)
+        showAlert(title: LocalizationKey.errorTitle.localized, message: message)
     }
     
     @IBAction func reloadBtnAction(_ sender: Any) {

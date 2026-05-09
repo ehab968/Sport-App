@@ -1,0 +1,28 @@
+/* 
+  Localizable.strings
+  Sport Mob
+
+  Created by Ehab Salah on 08/05/2026.
+  
+*/
+
+"app_name" = "سبورت موب";
+"leagues_nav_title" = "الدوريات";
+"favorites_nav_title" = "المفضلات";
+"sports_tab" = "الرياضات";
+"favorites_tab" = "المفضلة";
+"league_name_placeholder" = "اسم الدوري";
+"country_name_placeholder" = "اسم الدولة";
+"remove_btn" = "حذف";
+"vs_label" = "ضد";
+"item_bar_btn" = "عنصر";
+"choose_your_sport" = "اختر رياضتك";
+"football_sport" = "كرة القدم";
+"basketball_sport" = "كرة السلة";
+"tennis_sport" = "التنس";
+"cricket_sport" = "الكريكيت";
+"error_title" = "خطأ";
+"choose_language" = "اختر اللغة";
+"cancel_btn" = "إلغاء";
+"league_added_message" = "تم إضافة الدوري إلى المفضلة";
+"league_removed_message" = "تم حذف الدوري من المفضلة";

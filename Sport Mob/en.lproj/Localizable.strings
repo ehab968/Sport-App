@@ -1,0 +1,28 @@
+/*
+  Localizable.strings
+  Sport Mob
+
+  Created by Ehab Salah on 08/05/2026.
+  
+*/
+"app_name" = "Sport Mob";
+"leagues_nav_title" = "Leagues";
+"favorites_nav_title" = "Favorites";
+"league_removed_message" = "League removed from favorites";
+"sports_tab" = "Sports";
+"favorites_tab" = "Favorite";
+"league_name_placeholder" = "League name";
+"country_name_placeholder" = "country name";
+"remove_btn" = "Remove";
+"vs_label" = "VS";
+"item_bar_btn" = "Item";
+"choose_your_sport" = "Choose your sport";
+"football_sport" = "Football";
+"basketball_sport" = "Basketball";
+"tennis_sport" = "Tennis";
+"cricket_sport" = "Cricket";
+"error_title" = "Error";
+"choose_language" = "Choose Language";
+"cancel_btn" = "Cancel";
+"league_added_message" = "League added to favorites";
+"league_removed_message" = "League removed from favorites";

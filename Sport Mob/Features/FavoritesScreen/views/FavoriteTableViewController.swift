@@ -19,6 +19,23 @@ class FavoriteTableViewController: UITableViewController{
         presenter?.fetchFavLeaguesFromCoreData()
         setupBinding()
         setupState()
+        
+        let appearance = UINavigationBarAppearance()
+        
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.title = LocalizationKey.favoritesTitle.localized
     }
     
     
@@ -45,7 +62,7 @@ class FavoriteTableViewController: UITableViewController{
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] message in
                 guard let self = self else { return }
-                self.showAlert(title: "Error", message: message)
+                self.showAlert(title: LocalizationKey.errorTitle.localized, message: message)
             })
             .disposed(by: disposeBag)
         presenter?.removeSuccessState
@@ -53,7 +70,7 @@ class FavoriteTableViewController: UITableViewController{
             .subscribe(onNext: {
                 if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                    let window = scene.windows.first {
-                    window.makeToast("League removed from favorites", duration: 1.5, position: .bottom)
+                    window.makeToast(LocalizationKey.leagueRemovedMessage.localized, duration: 1.5, position: .bottom)
                 }
             }).disposed(by: disposeBag)
     }

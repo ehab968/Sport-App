@@ -62,7 +62,7 @@ class LeagueDetailsCollectionViewController:
     }
     
     func showError(message: String) {
-        showAlert(title: "Error", message: message)
+        showAlert(title: LocalizationKey.errorTitle.localized, message: message)
     }
     
 

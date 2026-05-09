@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Fq-Zt-vLy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qik-nE-poU">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
@@ -80,6 +80,9 @@
                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="21"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="choose_your_sport"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -93,51 +96,46 @@
                             <outlet property="delegate" destination="2QR-fC-NJN" id="0vC-vl-igI"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" title="Sports" image="soccerball.inverse" catalog="system" id="qzi-M6-Zc8"/>
+                    <navigationItem key="navigationItem" id="gnR-Xn-uXh">
+                        <barButtonItem key="leftBarButtonItem" title="theme" id="XAT-I2-auk"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="globe.fill" catalog="system" id="9fs-xN-yMo">
+                            <color key="tintColor" systemColor="systemBlueColor"/>
+                            <connections>
+                                <action selector="localizationaction:" destination="2QR-fC-NJN" id="x7A-U2-xvv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="EDk-Ri-fav" kind="push" id="rlP-M1-IoW"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnD-fT-e8h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-411.4503816793893" y="-513.38028169014092"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="MXO-Ye-nzi">
-            <objects>
-                <navigationController id="2Fq-Zt-vLy" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zEh-Os-yzX">
-                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Qik-nE-poU" kind="relationship" relationship="rootViewController" id="da6-0h-AAr"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="b46-VM-gIv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-2361" y="-178"/>
+            <point key="canvasLocation" x="515.26717557251902" y="-513.38028169014092"/>
         </scene>
         <!--Sport Mob-->
         <scene sceneID="CUx-fs-lCj">
             <objects>
                 <tabBarController id="Qik-nE-poU" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="Sport Mob" id="XIy-2r-VD7"/>
+                    <navigationItem key="navigationItem" title="Sport Mob" id="XIy-2r-VD7">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="ICW-rG-eU1"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="e.circle" catalog="system" id="jXA-sa-rLa"/>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Pw0-jG-I5h">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="2QR-fC-NJN" kind="relationship" relationship="viewControllers" id="ZRO-jD-hKV"/>
-                        <segue destination="yHK-Kp-HCv" kind="relationship" relationship="viewControllers" id="Gsv-Ge-4Wl"/>
+                        <segue destination="DD8-nB-brY" kind="relationship" relationship="viewControllers" id="ZRO-jD-hKV"/>
+                        <segue destination="qpK-zs-fyK" kind="relationship" relationship="viewControllers" id="Gsv-Ge-4Wl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhN-Uz-T2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1424" y="-178"/>
         </scene>
-        <!--Favorite-->
+        <!--Favorite Table View Controller-->
         <scene sceneID="Ns0-aX-aVY">
             <objects>
                 <tableViewController storyboardIdentifier="FavoriteTableViewController" id="yHK-Kp-HCv" customClass="FavoriteTableViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
@@ -179,6 +177,9 @@
                                             <buttonConfiguration key="configuration" style="filled" title="Remove">
                                                 <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
                                             </buttonConfiguration>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="remove_btn"/>
+                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -206,11 +207,11 @@
                             <outlet property="delegate" destination="yHK-Kp-HCv" id="9VH-yk-f5h"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Favorite" image="heart" catalog="system" id="Q2V-b4-LrJ"/>
+                    <navigationItem key="navigationItem" id="g4Z-6J-1gN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NV8-ce-G6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113.74045801526717" y="138.02816901408451"/>
+            <point key="canvasLocation" x="812.97709923664115" y="138.02816901408451"/>
         </scene>
         <!--Leagues -->
         <scene sceneID="zk3-tI-RIa">
@@ -308,7 +309,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hMg-hl-LuO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="585.49618320610682" y="-513.38028169014092"/>
+            <point key="canvasLocation" x="1512.2137404580153" y="-513.38028169014092"/>
         </scene>
         <!--League Details Collection View Controller-->
         <scene sceneID="8hK-Jd-0x4">
@@ -357,6 +358,9 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="vs_label"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15/6/2026" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPe-Yp-jOr">
                                             <rect key="frame" x="167.66666666666666" y="55" width="57.666666666666657" height="15"/>
@@ -452,6 +456,9 @@
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="vs_label"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="psg" translatesAutoresizingMaskIntoConstraints="NO" id="3De-Ep-3iS">
                                             <rect key="frame" x="30" y="15" width="50" height="50"/>
@@ -546,7 +553,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m7J-9N-UPJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1751.9083969465648" y="-513.38028169014092"/>
+            <point key="canvasLocation" x="2678.6259541984732" y="-513.38028169014092"/>
         </scene>
         <!--Team Details View Controller-->
         <scene sceneID="0yc-xd-HOI">
@@ -561,20 +568,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ev0-6L-vUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1335" y="177"/>
+            <point key="canvasLocation" x="2260.3053435114502" y="176.7605633802817"/>
+        </scene>
+        <!--Sports-->
+        <scene sceneID="LSV-Wr-XNJ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DD8-nB-brY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Sports" image="soccerball.inverse" catalog="system" id="qzi-M6-Zc8"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="BiQ-D9-CMu">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2QR-fC-NJN" kind="relationship" relationship="rootViewController" id="YqN-xs-N6p"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bdh-9J-8np" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-411.4503816793893" y="-513.38028169014092"/>
+        </scene>
+        <!--Favorite-->
+        <scene sceneID="HIb-HW-Nyy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qpK-zs-fyK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Favorite" image="heart" catalog="system" id="Q2V-b4-LrJ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jZz-Br-TWE">
+                        <rect key="frame" x="0.0" y="118" width="393" height="54"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yHK-Kp-HCv" kind="relationship" relationship="rootViewController" id="m9q-jT-lkU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EqM-Rf-jaF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-113.74045801526717" y="138.02816901408451"/>
         </scene>
     </scenes>
     <resources>
         <image name="Arsenal" width="292" height="343"/>
         <image name="arrow.clockwise" catalog="system" width="110" height="128"/>
+        <image name="e.circle" catalog="system" width="128" height="123"/>
+        <image name="globe.fill" catalog="system" width="128" height="119"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

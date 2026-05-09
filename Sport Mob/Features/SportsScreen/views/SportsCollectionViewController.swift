@@ -10,7 +10,7 @@ import UIKit
 
 class SportsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
-    let sportsArray = [("football","Football"), ("basketball","Basketball"), ("tennis","Tennis"), ("cricket","Cricket")]
+    let sportsArray = [("football",LocalizationKey.footballSport), ("basketball",LocalizationKey.basketballSport), ("tennis",LocalizationKey.tennisSport), ("cricket",LocalizationKey.cricketSport)]
     
     var presenter: SportsPresenterProtocol?
     override func viewDidLoad() {
@@ -18,10 +18,8 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         presenter = SportsPresenter()
         
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
         
         appearance.shadowColor = .clear
-        appearance.backgroundColor = .white
         appearance.titleTextAttributes = [
             .foregroundColor: UIColor.black,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -29,11 +27,32 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
         self.collectionView.delegate = self
         
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let items = self.tabBarController?.tabBar.items {
+            items[0].title = LocalizationKey.sportsTab.localized
+            
+            
+            items[1].title = LocalizationKey.favoritesTab.localized
+            
+        }
+        self.navigationItem.title = LocalizationKey.appName.localized
     }
     
-    // MARK: UICollectionViewDataSource
+    @IBAction func localizationaction(_ sender: Any) {
+        self.ShowLanguageAlert()
+    }
+}
+
+
+
+// MARK: UICollectionViewDataSource
+extension SportsCollectionViewController {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -49,7 +68,7 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SportsCollectionViewCell
         cell.sportImage.image = UIImage(named: sportsArray[indexPath.row].0)
-        cell.sportTitle.text = sportsArray[indexPath.row].1
+        cell.sportTitle.text = sportsArray[indexPath.row].1.localized
         return cell
     }
     
@@ -73,9 +92,8 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
             if let titleLabel = header.viewWithTag(100) as? UILabel {
-                        titleLabel.text = "Choose Your Sport"
-                        titleLabel.textColor = .black
-                    }
+                titleLabel.textColor = .black
+            }
             return header
         }
         return UICollectionReusableView()
@@ -89,3 +107,4 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         navigationController?.pushViewController(leagueVC!, animated: true)
     }
 }
+
