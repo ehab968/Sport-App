@@ -6,16 +6,59 @@
 //
 
 import XCTest
+@testable import Sport_Mob
 
-final class Sport_MobTests: XCTestCase {
+final class NetworkManagerIntegrationTests: XCTestCase {
+    
+    var networkManager: NetworkManager!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    override func setUp() {
+        super.setUp()
+        networkManager = NetworkManager.shared
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        networkManager = nil
+        super.tearDown()
     }
 
    
+    func testGetData_Leagues_ReturnsSuccess() async throws {
+        let response: LeaguesResponse = try await networkManager.getData(
+            endpoint: APIEndpoints.football,
+            met: "Leagues"
+        )
+        XCTAssertNotNil(response.result)
+    }
+
+   
+    func testGetData_Teams_ReturnsSuccess() async throws {
+        let params: [String: Any] = ["leagueId": "152"] 
+        
+        let response: TeamsRsponse = try await networkManager.getData(
+            endpoint: APIEndpoints.football,
+            met: "Teams",
+            parameters: params
+        )
+        
+        XCTAssertNotNil(response.result)
+        XCTAssertFalse(response.result?.isEmpty ?? true)
+    }
+
+    
+    func testGetData_Fixtures_ReturnsSuccess() async throws {
+        let params: [String: Any] = [
+            "leagueId": "152",
+            "from": "2026-05-01",
+            "to": "2026-05-30"
+        ]
+        
+        let response: LeagueDetailsResponse = try await networkManager.getData(
+            endpoint: APIEndpoints.football,
+            met: "Fixtures",
+            parameters: params
+        )
+        
+        XCTAssertNotNil(response.result)
+    }
 }
