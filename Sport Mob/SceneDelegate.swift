@@ -13,23 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        _ = windowScene
         
         let savedThemeIsDark = ThemeManager.shared.isDarkMode()
         if let window = self.window {
             window.overrideUserInterfaceStyle = savedThemeIsDark ? .dark : .light
-            
-            if let tabBarController = window.rootViewController as? UITabBarController,
-               let items = tabBarController.tabBar.items, items.count >= 2 {
-                items[0].image = UIImage(systemName: "soccerball")
-                items[0].selectedImage = UIImage(systemName: "soccerball.inverse")
-                
-                items[1].image = UIImage(systemName: "heart")
-                items[1].selectedImage = UIImage(systemName: "heart.fill")
-            }
         }
     }
 

@@ -28,6 +28,15 @@ class FavLeagueCell: UITableViewCell {
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .cellBackground
     }
+    
+
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Vertical spacing between cells via content view insets
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
+        favLeagueImage.layer.cornerRadius = favLeagueImage.frame.size.width / 2
+    }
 
     
     override func prepareForReuse() {

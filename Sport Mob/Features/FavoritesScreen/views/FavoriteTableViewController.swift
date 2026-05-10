@@ -130,7 +130,7 @@ class FavoriteTableViewController: UITableViewController{
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 116  // 100pt content + 16pt for top/bottom spacing insets
     }
     
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qik-nE-poU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="SPL-VC-001">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
@@ -10,6 +10,81 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="SPL-SC-001">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="SPL-VC-001" customClass="SplashViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SPL-VW-001">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-GLW-001">
+                                <rect key="frame" x="86.666666666666686" y="276" width="220" height="220"/>
+                                <color key="backgroundColor" red="0.17999999999999999" green="0.54500000000000004" blue="0.34100000000000003" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-LOG-001">
+                                <rect key="frame" x="136.66666666666666" y="326" width="119.99999999999997" height="120"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerball.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-IMG-001">
+                                        <rect key="frame" x="10" y="10.666666666666664" width="100" height="98.666666666666686"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="SPL-IMG-H"/>
+                                            <constraint firstAttribute="width" constant="100" id="SPL-IMG-W"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="SPL-IMG-001" firstAttribute="centerX" secondItem="SPL-LOG-001" secondAttribute="centerX" id="SPL-IMG-CX"/>
+                                    <constraint firstItem="SPL-IMG-001" firstAttribute="centerY" secondItem="SPL-LOG-001" secondAttribute="centerY" id="SPL-IMG-CY"/>
+                                    <constraint firstAttribute="height" constant="120" id="SPL-LOG-H"/>
+                                    <constraint firstAttribute="width" constant="120" id="SPL-LOG-W"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sport Mob" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-TIT-001">
+                                <rect key="frame" x="32" y="466" width="329" height="43"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your leagues. Your way." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-TAG-001">
+                                <rect key="frame" x="32" y="517" width="329" height="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SPL-SA-001"/>
+                        <color key="backgroundColor" name="app BackGround"/>
+                        <constraints>
+                            <constraint firstItem="SPL-GLW-001" firstAttribute="centerX" secondItem="SPL-VW-001" secondAttribute="centerX" id="SPL-GLW-CX"/>
+                            <constraint firstItem="SPL-GLW-001" firstAttribute="centerY" secondItem="SPL-VW-001" secondAttribute="centerY" constant="-40" id="SPL-GLW-CY"/>
+                            <constraint firstItem="SPL-GLW-001" firstAttribute="height" constant="220" id="SPL-GLW-H"/>
+                            <constraint firstItem="SPL-GLW-001" firstAttribute="width" constant="220" id="SPL-GLW-W"/>
+                            <constraint firstItem="SPL-LOG-001" firstAttribute="centerX" secondItem="SPL-VW-001" secondAttribute="centerX" id="SPL-LOG-CX"/>
+                            <constraint firstItem="SPL-LOG-001" firstAttribute="centerY" secondItem="SPL-VW-001" secondAttribute="centerY" constant="-40" id="SPL-LOG-CY"/>
+                            <constraint firstItem="SPL-TAG-001" firstAttribute="centerX" secondItem="SPL-VW-001" secondAttribute="centerX" id="SPL-TAG-CX"/>
+                            <constraint firstItem="SPL-TAG-001" firstAttribute="leading" secondItem="SPL-VW-001" secondAttribute="leading" constant="32" id="SPL-TAG-LED"/>
+                            <constraint firstItem="SPL-TAG-001" firstAttribute="top" secondItem="SPL-TIT-001" secondAttribute="bottom" constant="8" id="SPL-TAG-TOP"/>
+                            <constraint firstAttribute="trailing" secondItem="SPL-TAG-001" secondAttribute="trailing" constant="32" id="SPL-TAG-TRL"/>
+                            <constraint firstItem="SPL-TIT-001" firstAttribute="centerX" secondItem="SPL-VW-001" secondAttribute="centerX" id="SPL-TIT-CX"/>
+                            <constraint firstItem="SPL-TIT-001" firstAttribute="leading" secondItem="SPL-VW-001" secondAttribute="leading" constant="32" id="SPL-TIT-LED"/>
+                            <constraint firstItem="SPL-TIT-001" firstAttribute="top" secondItem="SPL-LOG-001" secondAttribute="bottom" constant="20" id="SPL-TIT-TOP"/>
+                            <constraint firstAttribute="trailing" secondItem="SPL-TIT-001" secondAttribute="trailing" constant="32" id="SPL-TIT-TRL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appNameLabel" destination="SPL-TIT-001" id="SPL-OUT-TIT"/>
+                        <outlet property="glowCircle" destination="SPL-GLW-001" id="SPL-OUT-GLW"/>
+                        <outlet property="logoContainer" destination="SPL-LOG-001" id="SPL-OUT-LOG"/>
+                        <outlet property="logoImageView" destination="SPL-IMG-001" id="SPL-OUT-IMG"/>
+                        <outlet property="taglineLabel" destination="SPL-TAG-001" id="SPL-OUT-TAG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SPL-FR-001" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2480" y="-187"/>
+        </scene>
         <!--Sport Mob-->
         <scene sceneID="SDw-Wf-WjM">
             <objects>
@@ -121,7 +196,7 @@
         <!--Sport Mob-->
         <scene sceneID="CUx-fs-lCj">
             <objects>
-                <tabBarController id="Qik-nE-poU" customClass="MainTabBarController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="Qik-nE-poU" customClass="MainTabBarController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Sport Mob" id="XIy-2r-VD7">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="ICW-rG-eU1"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="e.circle" catalog="system" id="jXA-sa-rLa"/>
@@ -139,13 +214,13 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fhN-Uz-T2U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1424" y="-178"/>
+            <point key="canvasLocation" x="-1534" y="-186"/>
         </scene>
         <!--Favorite Table View Controller-->
         <scene sceneID="Ns0-aX-aVY">
             <objects>
                 <tableViewController storyboardIdentifier="FavoriteTableViewController" id="yHK-Kp-HCv" customClass="FavoriteTableViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="S7v-ab-MP5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="S7v-ab-MP5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="app BackGround"/>
@@ -676,7 +751,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EqM-Rf-jaF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-113.74045801526717" y="138.02816901408451"/>
+            <point key="canvasLocation" x="-411" y="138"/>
         </scene>
     </scenes>
     <resources>
