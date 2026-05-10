@@ -25,11 +25,13 @@ class TeamPlayersHeader: UIView , NibLoadable{
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNibContent()
+        self.backgroundColor = .clear
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         loadNibContent()
+        self.backgroundColor = .clear
     }
 
    

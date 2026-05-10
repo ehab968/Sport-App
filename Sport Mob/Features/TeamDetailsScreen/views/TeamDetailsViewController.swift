@@ -33,7 +33,21 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
         teamPlayersTableView.register(UINib(nibName: "TeamPlayersCellHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "TeamPlayersCellHeader")
         
         teamPlayersTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-       
+        teamPlayersTableView.separatorStyle = .none
+        
+        view.backgroundColor = .appBackground
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.appPrimary,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        indicator.color = .appPrimary
         
         Task {
             await presenter?.fetchTeamDetails()

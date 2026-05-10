@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -72,6 +73,7 @@
                     </mask>
                 </variation>
             </tableViewCellContentView>
+            <color key="backgroundColor" name="app BackGround"/>
             <connections>
                 <outlet property="ageTopSpace" destination="JDR-dc-J1K" id="2az-PD-EeO"/>
                 <outlet property="imageTopSpace" destination="dDl-jM-dB2" id="BZO-k1-MIo"/>
@@ -87,5 +89,8 @@
     </objects>
     <resources>
         <image name="messi" width="300" height="390"/>
+        <namedColor name="app BackGround">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
     </resources>
 </document>

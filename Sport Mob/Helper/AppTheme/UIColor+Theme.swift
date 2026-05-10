@@ -18,7 +18,7 @@ extension UIColor {
     }
     
     static var appBackground: UIColor {
-        return UIColor(named: "App BackGround") ?? .systemBackground
+        return UIColor(named: "app BackGround") ?? .systemBackground
     }
     
     static var cellBackground: UIColor {

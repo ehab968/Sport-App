@@ -37,15 +37,13 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
             .foregroundColor: UIColor.appPrimary,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
-    
-            
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-            
-        if #available(iOS 15.0, *) {
-            tableView.sectionHeaderTopPadding = 0
-        }
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        
+        
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        
+        tableView.sectionHeaderTopPadding = 0
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.0))
         
         Task {
             await presenter?.fetchLeagues()
@@ -57,6 +55,7 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = scene.windows.first {
             indicator.center = window.center
+            indicator.color = .primary
             window.addSubview(indicator)
             indicator.startAnimating()
         }
@@ -75,7 +74,7 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         tableView.reloadData()
     }
     func onSaveLeagueSuccess() {
-//        showAlert(title: "Success", message: "League added to favorites")
+        //        showAlert(title: "Success", message: "League added to favorites")
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
            let window = scene.windows.first {
             window.makeToast(LocalizationKey.leagueAddedMessage.localized, duration: 1.5, position: .bottom)
@@ -173,6 +172,9 @@ extension LeagueTableViewController {
             sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
             , view: leagueDetailsVc
         )
+        let backButton = UIBarButtonItem()
+        backButton.tintColor = .primary
+        self.navigationItem.backBarButtonItem = backButton
         navigationController?.pushViewController(leagueDetailsVc!, animated: true)
     }
     
@@ -182,7 +184,7 @@ extension LeagueTableViewController {
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 16
     }
-
+    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView()
         footerView.backgroundColor = .clear

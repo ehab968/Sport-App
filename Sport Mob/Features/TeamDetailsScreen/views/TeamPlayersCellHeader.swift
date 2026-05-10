@@ -18,4 +18,14 @@ class TeamPlayersCellHeader: UITableViewHeaderFooterView {
     */
     @IBOutlet weak var playersPosition: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = .appBackground
+        self.backgroundView = backgroundView
+        
+        playersPosition.textColor = .appPrimary
+        playersPosition.font = UIFont.boldSystemFont(ofSize: 18)
+    }
 }

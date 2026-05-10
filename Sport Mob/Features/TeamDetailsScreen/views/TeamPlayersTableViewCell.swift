@@ -11,8 +11,19 @@ class TeamPlayersTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .cellBackground
+        self.contentView.layer.cornerRadius = 15
+        self.contentView.layer.borderWidth = 1
+        self.contentView.layer.masksToBounds = true
+        
+        playerImage.layer.cornerRadius = playerImage.frame.size.width / 2
+        playerImage.clipsToBounds = true
+        playerImage.layer.borderWidth = 2
+        
+        self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
+        playerImage.layer.borderColor = UIColor.appPrimary.cgColor
     }
    
     @IBOutlet weak var playerNum: UILabel!
@@ -30,13 +41,8 @@ class TeamPlayersTableViewCell: UITableViewCell {
     @IBOutlet weak var stackTopSpace: NSLayoutConstraint!
     @IBOutlet weak var imageTopSpace: NSLayoutConstraint!
     override func layoutSubviews() {
-            super.layoutSubviews()
-            
-           
-         
-          
-            
-            contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        }
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16))
+    }
 
 }
