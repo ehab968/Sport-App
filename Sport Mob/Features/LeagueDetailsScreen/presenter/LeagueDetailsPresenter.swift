@@ -19,9 +19,6 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
     private var nextMatchesList : [LeagueDetails] = []
     private var latestMatchesList : [LeagueDetails] = []
     private var teamsList : [TeamsModel] = []
-    
-    
-    
     weak var view : LeagueDetailsProtocol?
     init(leagueId: String? = nil, sportEndpointName: String? = nil, view: LeagueDetailsProtocol? = nil) {
         self.leagueId = leagueId

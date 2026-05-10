@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nCf-RE-X5M">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2Fq-Zt-vLy">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
@@ -493,20 +493,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" restorationIdentifier="TeamPlayersHeader" translatesAutoresizingMaskIntoConstraints="NO" id="nPi-1Q-oGD" customClass="TeamPlayersHeader" customModule="Sport_Mob" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128" width="393" height="170.33333333333337"/>
+                                <rect key="frame" x="0.0" y="113.00000000000001" width="393" height="170.33333333333337"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="393" id="Afo-t3-ZcC"/>
-                                    <constraint firstAttribute="height" constant="113" id="MHz-MS-u6p"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="MHz-MS-u6p"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="V11-Z3-F9q">
-                                <rect key="frame" x="0.0" y="298.33333333333331" width="393" height="681.66666666666674"/>
+                                <rect key="frame" x="0.0" y="283.33333333333331" width="393" height="681.66666666666674"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TeamPlayersTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TeamPlayersTableViewCell" id="Xws-9L-wHa" customClass="TeamPlayersTableViewCell" customModule="Sport_Mob" customModuleProvider="target">
@@ -527,23 +518,18 @@
                         <viewLayoutGuide key="safeArea" id="ToU-Dv-HDu"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="width" secondItem="xgB-DD-sW2" secondAttribute="width" multiplier="1:1" id="HAJ-EB-Udw"/>
-                            <constraint firstItem="V11-Z3-F9q" firstAttribute="width" secondItem="xgB-DD-sW2" secondAttribute="width" multiplier="1:1" id="Pou-RA-fUK"/>
-                            <constraint firstItem="V11-Z3-F9q" firstAttribute="top" secondItem="nPi-1Q-oGD" secondAttribute="bottom" id="f0n-Qe-y6Y"/>
-                            <constraint firstItem="ToU-Dv-HDu" firstAttribute="bottom" secondItem="nPi-1Q-oGD" secondAttribute="bottom" constant="583" id="h2u-cz-1Nl"/>
-                            <constraint firstItem="V11-Z3-F9q" firstAttribute="height" secondItem="xgB-DD-sW2" secondAttribute="height" multiplier="4:5" id="ojZ-9j-OrL"/>
-                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="height" secondItem="xgB-DD-sW2" secondAttribute="height" multiplier="1:5" id="otx-yw-GcB"/>
-                            <constraint firstItem="ToU-Dv-HDu" firstAttribute="top" secondItem="nPi-1Q-oGD" secondAttribute="top" constant="-10" id="sNd-GG-3Qo"/>
-                            <constraint firstItem="V11-Z3-F9q" firstAttribute="leading" secondItem="ToU-Dv-HDu" secondAttribute="leading" id="sp2-Jv-ykd"/>
-                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="leading" secondItem="xgB-DD-sW2" secondAttribute="leading" id="tCE-20-G6T"/>
+                            <constraint firstItem="V11-Z3-F9q" firstAttribute="height" secondItem="xgB-DD-sW2" secondAttribute="height" multiplier="4:5" id="7Zb-TF-RJl"/>
+                            <constraint firstItem="V11-Z3-F9q" firstAttribute="width" secondItem="xgB-DD-sW2" secondAttribute="width" multiplier="1:1" id="CJi-hp-M8f"/>
+                            <constraint firstItem="ToU-Dv-HDu" firstAttribute="top" secondItem="nPi-1Q-oGD" secondAttribute="top" constant="5" id="Jir-33-e0W"/>
+                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="height" secondItem="xgB-DD-sW2" secondAttribute="height" multiplier="1:5" id="LfJ-u2-JUl"/>
+                            <constraint firstItem="V11-Z3-F9q" firstAttribute="top" secondItem="nPi-1Q-oGD" secondAttribute="bottom" id="den-GV-yJv"/>
+                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="leading" secondItem="ToU-Dv-HDu" secondAttribute="leading" id="dtI-j4-8mr"/>
+                            <constraint firstItem="V11-Z3-F9q" firstAttribute="leading" secondItem="ToU-Dv-HDu" secondAttribute="leading" id="klw-ZZ-7tX"/>
+                            <constraint firstItem="nPi-1Q-oGD" firstAttribute="width" secondItem="xgB-DD-sW2" secondAttribute="width" multiplier="1:1" id="vtY-ad-2mu"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="h2u-cz-1Nl"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
+                        <outlet property="tableHeaderView" destination="nPi-1Q-oGD" id="Xze-a0-PZ4"/>
                         <outlet property="teamPlayersTableView" destination="V11-Z3-F9q" id="Dr8-WT-GAe"/>
                     </connections>
                 </viewController>

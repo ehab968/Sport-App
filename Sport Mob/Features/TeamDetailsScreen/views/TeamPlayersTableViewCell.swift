@@ -12,12 +12,9 @@ class TeamPlayersTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
-    var isFirstCell: Bool = false {
-            didSet {
-                imageTopSpace.constant = isFirstCell ? 27 : 23
-            }
-        }
+   
     @IBOutlet weak var playerNum: UILabel!
     @IBOutlet weak var playerCountry: UILabel!
     @IBOutlet weak var playerName: UILabel!
@@ -36,10 +33,10 @@ class TeamPlayersTableViewCell: UITableViewCell {
             super.layoutSubviews()
             
            
-            let topInset: CGFloat = isFirstCell ? 20 : 0
+         
           
             
-            contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0))
+            contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         }
 
 }
