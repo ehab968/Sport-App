@@ -166,16 +166,33 @@ extension LeagueTableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let leagueDetailsVc = storyboard?.instantiateViewController(identifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController
-        leagueDetailsVc?.leagueDetailsPresenter = LeagueDetailsPresenter(
-            leagueId: String(presenter?.getLeague(at: indexPath.section).leagueKey ?? 0),
-            sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
-            , view: leagueDetailsVc
-        )
-        let backButton = UIBarButtonItem()
-        backButton.tintColor = .primary
-        self.navigationItem.backBarButtonItem = backButton
-        navigationController?.pushViewController(leagueDetailsVc!, animated: true)
+        
+        
+        if presenter?.sportEndpointName == APIEndpoints.cricket{
+            let cricketLeagueDetailsVc = storyboard?.instantiateViewController(identifier: "CricketTableViewController") as? CricketTableViewController
+            cricketLeagueDetailsVc?.presenter = CricketPresenter(
+                leagueId: String(presenter?.getLeague(at: indexPath.section).leagueKey ?? 0),
+                sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
+                , view: cricketLeagueDetailsVc
+            )
+            let backButton = UIBarButtonItem()
+            backButton.tintColor = .primary
+            self.navigationItem.backBarButtonItem = backButton
+            navigationController?.pushViewController(cricketLeagueDetailsVc!, animated: true)
+            
+        }else {
+            let leagueDetailsVc = storyboard?.instantiateViewController(identifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController
+            leagueDetailsVc?.leagueDetailsPresenter = LeagueDetailsPresenter(
+                leagueId: String(presenter?.getLeague(at: indexPath.section).leagueKey ?? 0),
+                sportEndpointName: (presenter as? LeaguePresenter)?.sportEndpointName
+                , view: leagueDetailsVc
+            )
+            let backButton = UIBarButtonItem()
+            backButton.tintColor = .primary
+            self.navigationItem.backBarButtonItem = backButton
+            navigationController?.pushViewController(leagueDetailsVc!, animated: true)
+        }
+        
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

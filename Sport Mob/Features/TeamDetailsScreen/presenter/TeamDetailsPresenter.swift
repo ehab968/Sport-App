@@ -37,6 +37,7 @@ class TeamDetailsPresenter: TeamDetailsPresenterProtocol {
     var teamId : String?
     
     
+    
     init(teamId: String? = nil, view: TeamDetailsViewProtocol? = nil , networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.teamId = teamId
         self.view = view
