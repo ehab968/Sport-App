@@ -22,20 +22,22 @@ class LeaguePresenter: LeaguePresenterProtocol {
     
     
     weak var view: LeagueTableViewControllerProtocol?
-    private let networkManager = NetworkManager.shared
+    private let networkManager : NetworkManagerProtocol
     private let coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
     private var leagues : [League] = []
     var sportEndpointName: String
 
-    init(view: LeagueTableViewControllerProtocol?, sportEndpointName: String) {
+    init(view: LeagueTableViewControllerProtocol?, sportEndpointName: String ,
+         networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.view = view
         self.sportEndpointName = sportEndpointName
+        self.networkManager = networkManager
     }
 
     func fetchLeagues() async{
         view?.showLoading()
         do{
-            let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues")
+            let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues", parameters: nil)
             leagues = response.result
             view?.hideLoading()
             view?.reloadData()

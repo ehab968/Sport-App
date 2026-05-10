@@ -14,16 +14,18 @@ protocol LeagueDetailsPresenterProtocol {
 }
 
 class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
+    private let networkManager : NetworkManagerProtocol
     private var leagueId : String?
     private var sportEndpointName : String?
     private var nextMatchesList : [LeagueDetails] = []
     private var latestMatchesList : [LeagueDetails] = []
     private var teamsList : [TeamsModel] = []
     weak var view : LeagueDetailsProtocol?
-    init(leagueId: String? = nil, sportEndpointName: String? = nil, view: LeagueDetailsProtocol? = nil) {
+    init(leagueId: String? = nil, sportEndpointName: String? = nil, view: LeagueDetailsProtocol? = nil , networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.leagueId = leagueId
         self.sportEndpointName = sportEndpointName
         self.view = view
+        self.networkManager = networkManager
     }
     
     func fetchLeagueDetails() async {
@@ -35,7 +37,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
 
         do {
           
-            let nextResponse: LeagueDetailsResponse = try await NetworkManager.shared.getData(
+            let nextResponse: LeagueDetailsResponse = try await networkManager.getData(
                 endpoint: endpoint,
                 met: "Fixtures",
                 parameters: [
@@ -46,7 +48,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
             )
             
             
-            let latestResponse: LeagueDetailsResponse = try await NetworkManager.shared.getData(
+            let latestResponse: LeagueDetailsResponse = try await networkManager.getData(
                 endpoint: endpoint,
                 met: "Fixtures",
                 parameters: [
@@ -59,7 +61,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
             
             
             let teamsResponse : TeamsRsponse = try await
-            NetworkManager.shared.getData(endpoint: endpoint, met: "Teams" ,  parameters: [
+            networkManager.getData(endpoint: endpoint, met: "Teams" ,  parameters: [
                 "leagueId": id,
                
             ])

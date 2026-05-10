@@ -26,7 +26,7 @@ protocol TeamDetailsPresenterProtocol {
 class TeamDetailsPresenter: TeamDetailsPresenterProtocol {
     
     
-    
+    private let networkManager: NetworkManagerProtocol
     private var forwards : [Player] = []
     private var defenders : [Player] = []
     private var midfielders : [Player] = []
@@ -37,16 +37,17 @@ class TeamDetailsPresenter: TeamDetailsPresenterProtocol {
     var teamId : String?
     
     
-    init(teamId: String? = nil, view: TeamDetailsViewProtocol? = nil) {
+    init(teamId: String? = nil, view: TeamDetailsViewProtocol? = nil , networkManager: NetworkManagerProtocol = NetworkManager.shared) {
         self.teamId = teamId
         self.view = view
+        self.networkManager = networkManager
     }
    
     func fetchTeamDetails() async  {
         view?.showLoading()
         do {
            
-            let TeamDetailsResponse: TeamsRsponse = try await NetworkManager.shared.getData(
+            let TeamDetailsResponse: TeamsRsponse = try await networkManager.getData(
                 endpoint: APIEndpoints.football,
                 met: "Teams",
                 parameters: [
