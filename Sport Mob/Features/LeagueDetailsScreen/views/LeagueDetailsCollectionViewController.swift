@@ -13,6 +13,7 @@ protocol LeagueDetailsProtocol : AnyObject {
     func hideLoading()
     func showError(message: String)
     func reloadData()
+    func setupTennisView()
 }
 
 
@@ -42,6 +43,40 @@ class LeagueDetailsCollectionViewController:
         }
     }
     
+    
+    func setupTennisView() {
+        let emptyView = UIView(frame: self.collectionView.bounds)
+        
+        let imageView = UIImageView()
+        imageView.image = UIImage.noFav
+        imageView.contentMode = .scaleAspectFit
+        imageView.tintColor = .gray
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "No Tennis Teams"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .darkGray
+        titleLabel.textAlignment = .center
+        
+        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.alignment = .center
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        emptyView.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            stackView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
+            stackView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            imageView.widthAnchor.constraint(equalToConstant: 200)
+        ])
+        
+        self.collectionView.backgroundView = emptyView
+        
+        
+    }
     
     func showLoading() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -224,7 +259,7 @@ class LeagueDetailsCollectionViewController:
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if indexPath.section == 2 {
+        if indexPath.section == 2 && leagueDetailsPresenter?.isFootball() == true {
             
             let teamDetailsVc = storyboard?.instantiateViewController(identifier: "TeamDetailsViewController") as? TeamDetailsViewController
             teamDetailsVc?.presenter =

@@ -11,6 +11,7 @@ protocol LeagueDetailsPresenterProtocol {
     func getItemsCount(for section: Int) -> Int
     func getMatch(at index: Int, for section: Int) -> LeagueDetails?
     func getTeam(at index : Int) -> TeamsModel?
+    func isFootball() -> Bool
 }
 
 class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
@@ -28,6 +29,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
         self.networkManager = networkManager
     }
     
+   
     func fetchLeagueDetails() async {
        
         view?.showLoading()
@@ -35,50 +37,55 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
         let endpoint = self.sportEndpointName ?? APIEndpoints.football
         let id = self.leagueId ?? ""
 
-        do {
-          
-            let nextResponse: LeagueDetailsResponse = try await networkManager.getData(
-                endpoint: endpoint,
-                met: "Fixtures",
-                parameters: [
-                    "leagueId": id,
-                    "from": DateHelper.today(),
-                    "to": DateHelper.daysAhead(7)
-                ]
-            )
-            
-            
-            let latestResponse: LeagueDetailsResponse = try await networkManager.getData(
-                endpoint: endpoint,
-                met: "Fixtures",
-                parameters: [
-                    "leagueId": id,
-                    "from": DateHelper.daysAgo(7),
-                    "to": DateHelper.today()
+        if endpoint == APIEndpoints.tennis {
+            view?.hideLoading()
+            view?.setupTennisView()
+        }else{
+            do {
+                
+                let nextResponse: LeagueDetailsResponse = try await networkManager.getData(
+                    endpoint: endpoint,
+                    met: "Fixtures",
+                    parameters: [
+                        "leagueId": id,
+                        "from": DateHelper.today(),
+                        "to": DateHelper.daysAhead(7)
+                    ]
+                )
+                
+                
+                let latestResponse: LeagueDetailsResponse = try await networkManager.getData(
+                    endpoint: endpoint,
+                    met: "Fixtures",
+                    parameters: [
+                        "leagueId": id,
+                        "from": DateHelper.daysAgo(7),
+                        "to": DateHelper.today()
                         
-                ]
-            )
-            
-            
-            let teamsResponse : TeamsRsponse = try await
-            networkManager.getData(endpoint: endpoint, met: "Teams" ,  parameters: [
-                "leagueId": id,
-               
-            ])
-
-            
-            self.nextMatchesList = nextResponse.result ?? []
-            self.latestMatchesList = latestResponse.result ?? []
-            self.teamsList = teamsResponse.result ?? []
-            print("Next Matches Count: \(nextMatchesList.count)")
-            print("Latest Matches Count: \(latestMatchesList.count)")
-            
-            view?.hideLoading()
-            view?.reloadData()
-            
-        } catch {
-            view?.hideLoading()
-            view?.showError(message: error.localizedDescription)
+                    ]
+                )
+                
+                
+                let teamsResponse : TeamsRsponse = try await
+                networkManager.getData(endpoint: endpoint, met: "Teams" ,  parameters: [
+                    "leagueId": id,
+                    
+                ])
+                
+                
+                self.nextMatchesList = nextResponse.result ?? []
+                self.latestMatchesList = latestResponse.result ?? []
+                self.teamsList = teamsResponse.result ?? []
+                print("Next Matches Count: \(nextMatchesList.count)")
+                print("Latest Matches Count: \(latestMatchesList.count)")
+                
+                view?.hideLoading()
+                view?.reloadData()
+                
+            } catch {
+                view?.hideLoading()
+                view?.showError(message: error.localizedDescription)
+            }
         }
     }
     
@@ -105,7 +112,15 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
     }
     
     
-    
+    func isFootball() -> Bool {
+         if sportEndpointName == APIEndpoints.football {
+                return true
+         } else {
+             return false
+         }
+        
+            
+    }
     
     
 }
