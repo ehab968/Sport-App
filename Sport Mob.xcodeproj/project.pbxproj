@@ -6,8 +6,30 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6D1BE1362FA176D4008794EF /* Alamofire */; };
+		6D37A3902FAA8B2200BC6711 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6D37A38F2FAA8B2200BC6711 /* Toast */; };
+		6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */; };
+		6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */; };
+		6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6D9A10A82FA9E544001EFD10 /* RxCocoa */; };
+		6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DB44CE42FA64B5400F40AE6 /* SDWebImage */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6D34D5772FB02F94005EA435 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6D29570C2F9FFE8000B77185 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D2957132F9FFE8000B77185;
+			remoteInfo = "Sport Mob";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		6D2957142F9FFE8000B77185 /* Sport Mob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sport Mob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D34D5732FB02F94005EA435 /* Sport MobTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Sport MobTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LeagueEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LeagueEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -29,10 +51,26 @@
 			path = "Sport Mob";
 			sourceTree = "<group>";
 		};
+		6D34D5742FB02F94005EA435 /* Sport MobTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Sport MobTests";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		6D2957112F9FFE8000B77185 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D37A3902FAA8B2200BC6711 /* Toast in Frameworks */,
+				6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */,
+				6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */,
+				6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D34D5702FB02F94005EA435 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -45,7 +83,10 @@
 		6D29570B2F9FFE8000B77185 = {
 			isa = PBXGroup;
 			children = (
+				6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */,
+				6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */,
 				6D2957162F9FFE8000B77185 /* Sport Mob */,
+				6D34D5742FB02F94005EA435 /* Sport MobTests */,
 				6D2957152F9FFE8000B77185 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				6D2957142F9FFE8000B77185 /* Sport Mob.app */,
+				6D34D5732FB02F94005EA435 /* Sport MobTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -78,10 +120,37 @@
 			);
 			name = "Sport Mob";
 			packageProductDependencies = (
+				6D1BE1362FA176D4008794EF /* Alamofire */,
+				6DB44CE42FA64B5400F40AE6 /* SDWebImage */,
+				6D9A10A82FA9E544001EFD10 /* RxCocoa */,
+				6D37A38F2FAA8B2200BC6711 /* Toast */,
 			);
 			productName = "Sport Mob";
 			productReference = 6D2957142F9FFE8000B77185 /* Sport Mob.app */;
 			productType = "com.apple.product-type.application";
+		};
+		6D34D5722FB02F94005EA435 /* Sport MobTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6D34D5792FB02F94005EA435 /* Build configuration list for PBXNativeTarget "Sport MobTests" */;
+			buildPhases = (
+				6D34D56F2FB02F94005EA435 /* Sources */,
+				6D34D5702FB02F94005EA435 /* Frameworks */,
+				6D34D5712FB02F94005EA435 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6D34D5782FB02F94005EA435 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				6D34D5742FB02F94005EA435 /* Sport MobTests */,
+			);
+			name = "Sport MobTests";
+			packageProductDependencies = (
+			);
+			productName = "Sport MobTests";
+			productReference = 6D34D5732FB02F94005EA435 /* Sport MobTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -96,6 +165,10 @@
 					6D2957132F9FFE8000B77185 = {
 						CreatedOnToolsVersion = 26.3;
 					};
+					6D34D5722FB02F94005EA435 = {
+						CreatedOnToolsVersion = 26.3;
+						TestTargetID = 6D2957132F9FFE8000B77185;
+					};
 				};
 			};
 			buildConfigurationList = 6D29570F2F9FFE8000B77185 /* Build configuration list for PBXProject "Sport Mob" */;
@@ -104,21 +177,36 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = 6D29570B2F9FFE8000B77185;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */,
+				6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D2957152F9FFE8000B77185 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				6D2957132F9FFE8000B77185 /* Sport Mob */,
+				6D34D5722FB02F94005EA435 /* Sport MobTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		6D2957122F9FFE8000B77185 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D34D5712FB02F94005EA435 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -132,10 +220,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */,
+				6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D34D56F2FB02F94005EA435 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6D34D5782FB02F94005EA435 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6D2957132F9FFE8000B77185 /* Sport Mob */;
+			targetProxy = 6D34D5772FB02F94005EA435 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6D2957282F9FFE8200B77185 /* Debug */ = {
@@ -207,6 +312,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -271,6 +377,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -323,6 +430,56 @@
 			};
 			name = Release;
 		};
+		6D34D57A2FB02F94005EA435 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iTi.Sport-MobTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sport Mob.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sport Mob";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Debug;
+		};
+		6D34D57B2FB02F94005EA435 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "iTi.Sport-MobTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Sport Mob.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Sport Mob";
+				XROS_DEPLOYMENT_TARGET = 26.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -344,7 +501,74 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		6D34D5792FB02F94005EA435 /* Build configuration list for PBXNativeTarget "Sport MobTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6D34D57A2FB02F94005EA435 /* Debug */,
+				6D34D57B2FB02F94005EA435 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.11.2;
+			};
+		};
+		6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scalessec/toast-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.1;
+			};
+		};
+		6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.10.2;
+			};
+		};
+		6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6D1BE1362FA176D4008794EF /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D1BE1352FA176D4008794EF /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		6D37A38F2FAA8B2200BC6711 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */;
+			productName = Toast;
+		};
+		6D9A10A82FA9E544001EFD10 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		6DB44CE42FA64B5400F40AE6 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6D29570C2F9FFE8000B77185 /* Project object */;
 }
