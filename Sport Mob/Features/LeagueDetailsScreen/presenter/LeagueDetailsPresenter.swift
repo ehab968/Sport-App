@@ -42,6 +42,8 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
             view?.setupTennisView()
         }else{
             do {
+                print(DateHelper.today())
+                print(DateHelper.daysAhead(7))
                 
                 let nextResponse: LeagueDetailsResponse = try await networkManager.getData(
                     endpoint: endpoint,
