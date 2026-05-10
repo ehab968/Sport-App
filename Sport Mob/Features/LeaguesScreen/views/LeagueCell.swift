@@ -20,21 +20,13 @@ class LeagueCell: UITableViewCell {
         leagueImage.layer.cornerRadius = leagueImage.frame.size.width / 2
         leagueImage.clipsToBounds = true
         leagueImage.layer.borderWidth = 1.0
-        updateBorderColor()
+        leagueImage.layer.borderColor = UIColor.appPrimary.cgColor
+        self.contentView.layer.cornerRadius = 12.0
+        self.layer.cornerRadius = 12.0
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .cellBackground
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            updateBorderColor()
-        }
-    }
-    
-    private func updateBorderColor() {
-        leagueImage.layer.borderColor = UIColor.appPrimary.cgColor
-    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

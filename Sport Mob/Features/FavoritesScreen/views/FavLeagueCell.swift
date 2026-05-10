@@ -22,21 +22,13 @@ class FavLeagueCell: UITableViewCell {
         favLeagueImage.layer.cornerRadius = favLeagueImage.frame.size.width / 2
         favLeagueImage.clipsToBounds = true
         favLeagueImage.layer.borderWidth = 1.0
-        updateBorderColor()
+        favLeagueImage.layer.borderColor = UIColor.appPrimary.cgColor
+        self.contentView.layer.cornerRadius = 12.0
+        self.layer.cornerRadius = 12.0
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .cellBackground
     }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            updateBorderColor()
-        }
-    }
-    
-    private func updateBorderColor() {
-        favLeagueImage.layer.borderColor = UIColor.appPrimary.cgColor
-    }
+
     
     override func prepareForReuse() {
         super.prepareForReuse()

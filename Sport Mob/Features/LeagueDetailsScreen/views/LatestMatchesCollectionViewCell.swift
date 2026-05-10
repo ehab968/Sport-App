@@ -20,18 +20,8 @@ class LatestMatchesCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.cornerRadius = 12.0
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.borderWidth = 1.0
-        updateBorderColor()
+        self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
         self.contentView.backgroundColor = .cellBackground
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-            updateBorderColor()
-        }
-    }
-    
-    private func updateBorderColor() {
-        self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
-    }
 }
