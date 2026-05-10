@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 
 class SportsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
@@ -13,6 +15,11 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     let sportsArray = [("football",LocalizationKey.footballSport), ("basketball",LocalizationKey.basketballSport), ("tennis",LocalizationKey.tennisSport), ("cricket",LocalizationKey.cricketSport)]
     
     var presenter: SportsPresenterProtocol?
+    let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var themeIcon: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = SportsPresenter()
@@ -21,7 +28,7 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         
         appearance.shadowColor = .clear
         appearance.titleTextAttributes = [
-            .foregroundColor: UIColor.black,
+            .foregroundColor: UIColor.appPrimary,
             .font: UIFont.systemFont(ofSize: 24, weight: .bold)
         ]
         
@@ -30,7 +37,9 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
         
         self.collectionView.delegate = self
         
-        
+        self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        self.themeIcon.tintColor = .appPrimary
+        onThemeChanged()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -46,6 +55,20 @@ class SportsCollectionViewController: UICollectionViewController,UICollectionVie
     
     @IBAction func localizationaction(_ sender: Any) {
         self.ShowLanguageAlert()
+    }
+    
+    func onThemeChanged() {
+        themeIcon.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            ThemeManager.shared.toogleTheme()
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.overrideUserInterfaceStyle = ThemeManager.shared.isDarkMode() ? .dark : .light
+            }
+            
+            self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        }).disposed(by: self.disposeBag)
     }
 }
 
@@ -91,8 +114,9 @@ extension SportsCollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "header", for: indexPath)
+            header.backgroundColor = UIColor.clear
             if let titleLabel = header.viewWithTag(100) as? UILabel {
-                titleLabel.textColor = .black
+                titleLabel.textColor = .appText
             }
             return header
         }
@@ -107,4 +131,3 @@ extension SportsCollectionViewController {
         navigationController?.pushViewController(leagueVC!, animated: true)
     }
 }
-

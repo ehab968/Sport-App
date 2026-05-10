@@ -17,6 +17,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        let savedThemeIsDark = ThemeManager.shared.isDarkMode()
+        if let window = self.window {
+            window.overrideUserInterfaceStyle = savedThemeIsDark ? .dark : .light
+            
+            if let tabBarController = window.rootViewController as? UITabBarController,
+               let items = tabBarController.tabBar.items, items.count >= 2 {
+                items[0].image = UIImage(systemName: "soccerball")
+                items[0].selectedImage = UIImage(systemName: "soccerball.inverse")
+                
+                items[1].image = UIImage(systemName: "heart")
+                items[1].selectedImage = UIImage(systemName: "heart.fill")
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

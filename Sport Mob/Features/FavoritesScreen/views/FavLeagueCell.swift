@@ -19,7 +19,23 @@ class FavLeagueCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        favLeagueImage.layer.cornerRadius = favLeagueImage.frame.size.width / 2
+        favLeagueImage.clipsToBounds = true
+        favLeagueImage.layer.borderWidth = 1.0
+        updateBorderColor()
+        self.backgroundColor = .clear
+        self.contentView.backgroundColor = .cellBackground
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateBorderColor()
+        }
+    }
+    
+    private func updateBorderColor() {
+        favLeagueImage.layer.borderColor = UIColor.appPrimary.cgColor
     }
     
     override func prepareForReuse() {
@@ -30,11 +46,12 @@ class FavLeagueCell: UITableViewCell {
     func setupCell(leagueName: String, countryName: String, leagueImageURL: String , removeAction: @escaping () -> Void) {
         favLeagueName.text = leagueName
         favLeagueCountryName.text = countryName
+        let leaguePlaceholder = UIImage(named: "league_placeholder")
         if let url = URL(string: leagueImageURL) {
-            favLeagueImage.sd_setImage(with: url,placeholderImage: UIImage.league)
+            favLeagueImage.sd_setImage(with: url,placeholderImage: leaguePlaceholder)
         }
         else {
-            favLeagueImage.image = UIImage.league
+            favLeagueImage.image = leaguePlaceholder
         }
         
         removeButton.rx.tap

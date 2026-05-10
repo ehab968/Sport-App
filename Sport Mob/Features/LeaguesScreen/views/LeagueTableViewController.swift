@@ -30,13 +30,28 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.appPrimary,
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
+    
+            
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.1))
+        
         Task {
             await presenter?.fetchLeagues()
         }
         self.navigationItem.title = LocalizationKey.leaguesTitle.localized
     }
-    
-    
     
     func showLoading() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
@@ -85,6 +100,9 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         }
     }
     
+    @IBAction func backBtnAction(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }
 
 extension LeagueTableViewController {
@@ -108,18 +126,19 @@ extension LeagueTableViewController {
         cell.leagueLabel.text = league?.leagueName
         cell.countryLabel.text = league?.countryName
         
+        let leaguePlaceholder = UIImage(named: "league_placeholder")
         if let logoString = league?.leagueLogo, let url = URL(string: logoString) {
-            cell.leagueImage.sd_setImage(with: url, placeholderImage: UIImage.league)
+            cell.leagueImage.sd_setImage(with: url, placeholderImage: leaguePlaceholder)
         } else {
-            cell.leagueImage.image = UIImage.league
+            cell.leagueImage.image = leaguePlaceholder
         }
         
-        let placeholder = UIImage(systemName: "globe.europe.africa.fill")?.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        let countryPlaceholder = UIImage(named: "country_placeholder")
         
         if let logoString = league?.countryLogo, let url = URL(string: logoString) {
-            cell.countryImage.sd_setImage(with: url, placeholderImage: placeholder)
+            cell.countryImage.sd_setImage(with: url, placeholderImage: countryPlaceholder)
         } else {
-            cell.countryImage.image = placeholder
+            cell.countryImage.image = countryPlaceholder
         }
         
         

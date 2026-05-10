@@ -20,6 +20,18 @@ class SportsCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.masksToBounds = true
         
         self.contentView.layer.borderWidth = 1.5
-        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        updateBorderColor()
+        self.contentView.backgroundColor = .cellBackground
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateBorderColor()
+        }
+    }
+    
+    private func updateBorderColor() {
+        self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
     }
 }

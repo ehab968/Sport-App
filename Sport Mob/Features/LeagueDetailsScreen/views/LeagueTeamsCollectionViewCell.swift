@@ -11,4 +11,24 @@ class LeagueTeamsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var teamImage: UIImageView!
     
     @IBOutlet weak var teamName: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.contentView.layer.cornerRadius = 12.0
+        self.contentView.layer.masksToBounds = true
+        self.contentView.layer.borderWidth = 1.0
+        updateBorderColor()
+        self.contentView.backgroundColor = .cellBackground
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if self.traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
+            updateBorderColor()
+        }
+    }
+    
+    private func updateBorderColor() {
+        self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
+    }
 }
