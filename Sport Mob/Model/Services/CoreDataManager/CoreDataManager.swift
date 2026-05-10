@@ -37,7 +37,7 @@ class CoreDataManager : CoreDataManagerProtocol {
     
     func saveFavLeague(league : League) throws {
         let favLeague = LeagueEntity(context: viewContext)
-        favLeague.id = Int64(league.leagueKey)
+        favLeague.id = Int64(league.leagueKey ?? 0)
         favLeague.leagueName = league.leagueName
         favLeague.leagueImage = league.leagueLogo
         favLeague.countryName = league.countryName

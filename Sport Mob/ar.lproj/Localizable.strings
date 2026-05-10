@@ -27,4 +27,11 @@
 "league_added_message" = "تم إضافة الدوري إلى المفضلة";
 "league_removed_message" = "تم حذف الدوري من المفضلة";
 "no_fav_Leagues" = "لا توجد دوريات مفضلة";
+"no_tennis_teams" = "لا توجد فرق تنس";
+"age" = "العمر";
+"coach" = "المدرب";
+"keepers" = "حراس المرمى";
+"defenders" = "المدافعون";
+"midfielders" = "لاعبي الوسط";
+"forwards" = "المهاجمون";
 

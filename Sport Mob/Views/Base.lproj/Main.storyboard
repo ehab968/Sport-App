@@ -576,7 +576,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12 -11" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCz-0D-D9D">
                                             <rect key="frame" x="176.66666666666666" y="46" width="40" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="textColor" name="TextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PSG" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Y8Z-bJ-78a">
@@ -741,11 +741,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ev0-6L-vUc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="2430" y="173"/>
-<!--=======-->
-<!--            <point key="canvasLocation" x="2260.3053435114502" y="176.7605633802817"/>-->
-<!-->>>>>>> features/handel_errors-->
         </scene>
         <!--Sports-->
         <scene sceneID="LSV-Wr-XNJ">
@@ -783,11 +779,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EqM-Rf-jaF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-
             <point key="canvasLocation" x="-411" y="138"/>
-<!--=======-->
-<!--            <point key="canvasLocation" x="-113.74045801526717" y="138.02816901408451"/>-->
-<!-->>>>>>> features/handel_errors-->
         </scene>
     </scenes>
     <resources>
@@ -797,7 +789,6 @@
         <image name="e.circle" catalog="system" width="128" height="123"/>
         <image name="globe.fill" catalog="system" width="128" height="119"/>
         <image name="heart" catalog="system" width="128" height="107"/>
-
         <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
@@ -816,23 +807,11 @@
         <namedColor name="cell color">
             <color red="0.94901960784313721" green="0.97647058823529409" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-<!--=======-->
-<!--        <image name="psg" width="224.90464782714844" height="224.90960693359375"/>-->
-<!--        <image name="soccerball.inverse" catalog="system" width="128" height="123"/>-->
-<!--        <systemColor name="systemBackgroundColor">-->
-<!--            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>-->
-<!--        </systemColor>-->
-<!--        <systemColor name="systemBlueColor">-->
-<!--            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>-->
-<!--        </systemColor>-->
-<!--        <systemColor name="systemGray5Color">-->
-<!--            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>-->
-<!--        </systemColor>-->
-<!--        <systemColor name="systemYellowColor">-->
-<!--            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>-->
-<!-->>>>>>> features/handel_errors-->
         </systemColor>
     </resources>
 </document>

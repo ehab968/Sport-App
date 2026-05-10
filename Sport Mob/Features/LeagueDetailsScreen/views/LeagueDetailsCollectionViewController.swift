@@ -53,7 +53,7 @@ class LeagueDetailsCollectionViewController:
         imageView.tintColor = .gray
         
         let titleLabel = UILabel()
-        titleLabel.text = "No Tennis Teams"
+        titleLabel.text = LocalizationKey.noTennisTeams.localized
         titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.textColor = .darkGray
         titleLabel.textAlignment = .center

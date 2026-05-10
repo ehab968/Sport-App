@@ -209,15 +209,15 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
           let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TeamPlayersCellHeader") as? TeamPlayersCellHeader
           switch section {
           case 0:
-              header?.playersPosition?.text = "Coash"
+              header?.playersPosition?.text = LocalizationKey.coach.localized
           case 1:
-              header?.playersPosition?.text = "keepers"
+              header?.playersPosition?.text = LocalizationKey.keepers.localized
           case 2:
-              header?.playersPosition?.text = "Defenders"
+              header?.playersPosition?.text = LocalizationKey.defenders.localized
           case 3:
-              header?.playersPosition?.text = "Midfielders"
+              header?.playersPosition?.text = LocalizationKey.midfielders.localized
           case 4:
-              header?.playersPosition?.text = "Forwards"
+              header?.playersPosition?.text = LocalizationKey.forwards.localized
           default:
               header?.playersPosition?.text = ""
           }

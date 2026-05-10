@@ -9,14 +9,14 @@ import Foundation
 
 
 struct LeaguesResponse: Codable {
-    let success: Int
-    let result: [League]
+    let success: Int?
+    let result: [League]?
 }
 
 
 struct League: Codable {
-    let leagueKey: Int
-    let leagueName: String
+    let leagueKey: Int?
+    let leagueName: String?
     let countryKey: Int?
     let countryName: String?
     let leagueLogo: String?

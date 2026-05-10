@@ -38,7 +38,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
         view?.showLoading()
         do{
             let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues", parameters: nil)
-            leagues = response.result
+            leagues = response.result ?? []
             view?.hideLoading()
             view?.reloadData()
         }
@@ -66,7 +66,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
     func isLeagueFav(at index : Int) -> Bool{
         let league = leagues[index]
         do{
-            return try coreDataManager.isFav(leagueId: league.leagueKey)
+            return try coreDataManager.isFav(leagueId: league.leagueKey ?? 0)
         }
         catch {
             print("Error checking if league is favorite: \(error)")
@@ -77,7 +77,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
         let league = leagues[index]
         Task(priority: .background){
             do{
-                try coreDataManager.removeFavLeague(leagueId: league.leagueKey)
+                try coreDataManager.removeFavLeague(leagueId: league.leagueKey ?? 0)
                 view?.onRemoveLeagueSuccess()
             }
             catch{
