@@ -221,6 +221,21 @@ class LeagueDetailsCollectionViewController:
             
         }
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.section == 2 {
+            
+            let teamDetailsVc = storyboard?.instantiateViewController(identifier: "TeamDetailsViewController") as? TeamDetailsViewController
+            teamDetailsVc?.presenter =
+            TeamDetailsPresenter(
+                teamId: String(leagueDetailsPresenter?.getTeam(at: indexPath.row)?.teamKey ?? 0),
+                view: teamDetailsVc
+            )
+            navigationController?.pushViewController(teamDetailsVc!, animated: true)
+        }
+    }
+    
 
     // MARK: UICollectionViewDelegate
 

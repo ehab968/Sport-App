@@ -9,13 +9,13 @@ import Foundation
 
 
 struct TeamsRsponse: Codable {
-    let success: Int
+    let success: Int?
     let result: [TeamsModel]?
 }
 
 
 struct TeamsModel: Codable {
-    let teamKey: Int
+    let teamKey: Int?
     let teamName: String?
     let teamLogo: String?
     let players: [Player]?
@@ -47,6 +47,7 @@ struct Player: Codable {
     let playerImage: String?
     let playerName, playerNumber: String?
     let playerCountry: String?
+    let playerType: String?
     let playerAge, playerMatchPlayed, playerGoals, playerYellowCards: String?
     let playerRedCards: String?
     let playerSubstituteOut, playerSubstitutesOnBench, playerAssists: String?
@@ -65,6 +66,7 @@ struct Player: Codable {
         case playerName = "player_name"
         case playerNumber = "player_number"
         case playerCountry = "player_country"
+        case playerType = "player_type"
         case playerAge = "player_age"
         case playerMatchPlayed = "player_match_played"
         case playerGoals = "player_goals"
