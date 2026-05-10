@@ -19,8 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let savedThemeIsDark = ThemeManager.shared.isDarkMode()
-        if let window = self.window{
+        if let window = self.window {
             window.overrideUserInterfaceStyle = savedThemeIsDark ? .dark : .light
+            
+            if let tabBarController = window.rootViewController as? UITabBarController,
+               let items = tabBarController.tabBar.items, items.count >= 2 {
+                items[0].image = UIImage(systemName: "soccerball")
+                items[0].selectedImage = UIImage(systemName: "soccerball.inverse")
+                
+                items[1].image = UIImage(systemName: "heart")
+                items[1].selectedImage = UIImage(systemName: "heart.fill")
+            }
         }
     }
 

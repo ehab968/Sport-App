@@ -11,14 +11,20 @@ import RxCocoa
 import SDWebImage
 import Toast
 class FavoriteTableViewController: UITableViewController{
+    
+    @IBOutlet weak var themeIcon: UIBarButtonItem!
+    @IBOutlet weak var localizationIcon: UIBarButtonItem!
     var presenter: FavLeaguePresenter?
     let disposeBag = DisposeBag()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = FavLeaguePresenter()
         presenter?.fetchFavLeaguesFromCoreData()
         setupBinding()
         setupState()
+        setupTheme()
         
         let appearance = UINavigationBarAppearance()
         
@@ -37,6 +43,7 @@ class FavoriteTableViewController: UITableViewController{
         
         self.navigationItem.title = LocalizationKey.favoritesTitle.localized
     }
+    
     
     
     func setupBinding() {
@@ -95,13 +102,13 @@ class FavoriteTableViewController: UITableViewController{
         
         let titleLabel = UILabel()
         titleLabel.text = LocalizationKey.noFavoritesMessage.localized
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
-        titleLabel.textColor = .darkGray
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
+        titleLabel.textColor = .primary
         titleLabel.textAlignment = .center
         
         let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
         stackView.axis = .vertical
-        stackView.spacing = 10
+        stackView.spacing = 24
         stackView.alignment = .center
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -110,8 +117,8 @@ class FavoriteTableViewController: UITableViewController{
         NSLayoutConstraint.activate([
             stackView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
             stackView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            imageView.widthAnchor.constraint(equalToConstant: 200)
+            imageView.heightAnchor.constraint(equalToConstant: 250),
+            imageView.widthAnchor.constraint(equalToConstant: 250)
         ])
         
         self.tableView.backgroundView = emptyView
@@ -119,7 +126,6 @@ class FavoriteTableViewController: UITableViewController{
         self.tableView.separatorStyle = .none
         
     }
-    
 
     // MARK: - Table view data source
 
@@ -127,8 +133,30 @@ class FavoriteTableViewController: UITableViewController{
         return 100
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+}
+
+ // Nav button actions
+extension FavoriteTableViewController {
+    func setupTheme() {
+        self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        onThemeChanged()
     }
     
+    func onThemeChanged() {
+        themeIcon.rx.tap.subscribe(onNext: { [weak self] in
+            guard let self = self else { return }
+            ThemeManager.shared.toogleTheme()
+            
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let window = windowScene.windows.first {
+                window.overrideUserInterfaceStyle = ThemeManager.shared.isDarkMode() ? .dark : .light
+            }
+            
+            self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")
+        }).disposed(by: self.disposeBag)
+    }
+    
+    @IBAction func localizationaction(_ sender: Any) {
+        self.ShowLanguageAlert()
+    }
 }

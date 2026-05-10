@@ -121,7 +121,7 @@
         <!--Sport Mob-->
         <scene sceneID="CUx-fs-lCj">
             <objects>
-                <tabBarController id="Qik-nE-poU" sceneMemberID="viewController">
+                <tabBarController id="Qik-nE-poU" customClass="MainTabBarController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="Sport Mob" id="XIy-2r-VD7">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="ICW-rG-eU1"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="e.circle" catalog="system" id="jXA-sa-rLa"/>
@@ -216,7 +216,21 @@
                             <outlet property="delegate" destination="yHK-Kp-HCv" id="9VH-yk-f5h"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="g4Z-6J-1gN"/>
+                    <navigationItem key="navigationItem" id="g4Z-6J-1gN">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="moon.fill" catalog="system" id="Fav-Theme-Btn">
+                            <color key="tintColor" name="Primary Color"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="globe.fill" catalog="system" id="Fav-Loc-Btn">
+                            <color key="tintColor" name="Primary Color"/>
+                            <connections>
+                                <action selector="localizationaction:" destination="yHK-Kp-HCv" id="YQB-qW-4QC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="localizationIcon" destination="Fav-Loc-Btn" id="Fav-Conn-Loc"/>
+                        <outlet property="themeIcon" destination="Fav-Theme-Btn" id="Fav-Conn-Theme"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NV8-ce-G6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,10 +651,10 @@
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
         <namedColor name="App BackGround">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Primary Color">
-            <color red="0.13725490196078433" green="0.33725490196078434" blue="0.70980392156862748" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.1803921568627451" green="0.54509803921568623" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="TextButton">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -649,7 +663,7 @@
             <color red="0.070588235294117646" green="0.070588235294117646" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="cell color">
-            <color red="0.93800002336502075" green="0.93000000715255737" blue="0.92599999904632568" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.94901960784313721" green="0.97647058823529409" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
