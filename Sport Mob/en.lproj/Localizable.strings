@@ -34,4 +34,13 @@
 "defenders" = "Defenders";
 "midfielders" = "Midfielders";
 "forwards" = "Forwards";
+"onboarding_title_1" = "Discover Your Sport";
+"onboarding_desc_1" = "Explore Football, Basketball, Cricket, and Tennis — all in one place. Choose what you love.";
+"onboarding_title_2" = "Follow Your Leagues";
+"onboarding_desc_2" = "Add your favourite leagues to your collection and keep track of every team and standing.";
+"onboarding_title_3" = "Never Miss a Match";
+"onboarding_desc_3" = "Get the latest match results, upcoming fixtures, and full squad details at your fingertips.";
+"skip_btn" = "Skip";
+"next_btn" = "Next";
+"get_started_btn" = "Get Started";
 

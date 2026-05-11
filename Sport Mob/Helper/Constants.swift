@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum OnboardingConstants : String {
+    case hasSeenOnboarding = "hasSeenOnboarding"
+}
+
 enum ThemeConstants : String {
     case light = "light"
     case dark = "dark"

@@ -94,23 +94,30 @@ class SplashViewController: UIViewController {
     }
     
     private func transitionToMain() {
-        guard let mainVC = UIStoryboard(name: "Main", bundle: nil)
-                .instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else { return }
         
+        let hasSeenOnboarding = UserDefaults.standard.bool(forKey: "hasSeenOnboarding")
         guard let window = view.window else { return }
-        
         let savedThemeIsDark = ThemeManager.shared.isDarkMode()
         window.overrideUserInterfaceStyle = savedThemeIsDark ? .dark : .light
         
-        if let items = mainVC.tabBar.items, items.count >= 2 {
-            items[0].image = UIImage(systemName: "soccerball")
-            items[0].selectedImage = UIImage(systemName: "soccerball.inverse")
-            items[1].image = UIImage(systemName: "heart")
-            items[1].selectedImage = UIImage(systemName: "heart.fill")
+        let nextVC: UIViewController
+        
+        if hasSeenOnboarding {
+            guard let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "MainTabBarController") as? UITabBarController else { return }
+            
+            if let items = mainVC.tabBar.items, items.count >= 2 {
+                items[0].image = UIImage(systemName: "soccerball")
+                items[0].selectedImage = UIImage(systemName: "soccerball.inverse")
+                items[1].image = UIImage(systemName: "heart")
+                items[1].selectedImage = UIImage(systemName: "heart.fill")
+            }
+            nextVC = mainVC
+        } else {
+            guard let onboardingVC = self.storyboard?.instantiateViewController(withIdentifier: "OnBoardingPageViewController") as? OnBoardingPageViewController else { return }
+            nextVC = onboardingVC
         }
         
-        mainVC.modalPresentationStyle = .fullScreen
-        mainVC.modalTransitionStyle = .crossDissolve
-        present(mainVC, animated: true)
+        window.rootViewController = nextVC
+        UIView.transition(with: window,duration: 0.5,options: .transitionCrossDissolve,animations: nil,completion: nil)
     }
 }

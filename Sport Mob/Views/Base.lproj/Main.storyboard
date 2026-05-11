@@ -83,7 +83,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SPL-FR-001" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2480" y="-187"/>
+            <point key="canvasLocation" x="-5506" y="-187"/>
         </scene>
         <!--Sport Mob-->
         <scene sceneID="SDw-Wf-WjM">
@@ -781,6 +781,283 @@
             </objects>
             <point key="canvasLocation" x="-411" y="138"/>
         </scene>
+        <!--On Boarding Page View Controller-->
+        <scene sceneID="ONB-PVC-SC">
+            <objects>
+                <pageViewController storyboardIdentifier="OnBoardingPageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ONB-PVC-001" customClass="OnBoardingPageViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONB-PVC-FR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4718" y="-187"/>
+        </scene>
+        <!--On Boarding View Controller-->
+        <scene sceneID="ONB-SC-001">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingViewController" id="ONB-VC-001" customClass="OnBoardingViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ONB-VW-001">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-BT-SKP">
+                                <rect key="frame" x="312" y="118.00000000000001" width="61" height="35.666666666666671"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <color key="baseForegroundColor" name="Primary Color"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="skip_btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="skipButtonTapped:" destination="ONB-VC-001" eventType="touchUpInside" id="ONB-BT-SK1"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="soccerball.inverse" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-IM-001">
+                                <rect key="frame" x="71.666666666666686" y="210.66666666666669" width="250" height="248.66666666666669"/>
+                                <color key="tintColor" name="Primary Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="ONB-IM-H"/>
+                                    <constraint firstAttribute="width" constant="250" id="ONB-IM-W"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Discover Your Sport" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-TIT">
+                                <rect key="frame" x="32" y="500.00000000000006" width="329" height="33.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_title_1"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Explore Football, Basketball, Cricket, and Tennis — all in one place. Choose what you love." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-DSC">
+                                <rect key="frame" x="32" y="553.66666666666663" width="329" height="57.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_desc_1"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-BT-NXT">
+                                <rect key="frame" x="32" y="684" width="329" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ONB-BT-H"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Next" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="baseForegroundColor" name="TextButton"/>
+                                    <color key="baseBackgroundColor" name="Primary Color"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="next_btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="ONB-VC-001" eventType="touchUpInside" id="ONB-BT-NX1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ONB-SA-001"/>
+                        <color key="backgroundColor" name="app BackGround"/>
+                        <constraints>
+                            <constraint firstItem="ONB-LB-DSC" firstAttribute="leading" secondItem="ONB-SA-001" secondAttribute="leading" constant="32" id="ONB-DSC-L"/>
+                            <constraint firstItem="ONB-SA-001" firstAttribute="trailing" secondItem="ONB-LB-DSC" secondAttribute="trailing" constant="32" id="ONB-DSC-R"/>
+                            <constraint firstItem="ONB-LB-DSC" firstAttribute="top" secondItem="ONB-LB-TIT" secondAttribute="bottom" constant="20" id="ONB-DSC-T"/>
+                            <constraint firstItem="ONB-IM-001" firstAttribute="centerX" secondItem="ONB-VW-001" secondAttribute="centerX" id="ONB-IM-CX"/>
+                            <constraint firstItem="ONB-IM-001" firstAttribute="top" secondItem="ONB-SA-001" secondAttribute="top" constant="92" id="ONB-IM-T"/>
+                            <constraint firstItem="ONB-SA-001" firstAttribute="bottom" secondItem="ONB-BT-NXT" secondAttribute="bottom" constant="50" id="ONB-NXT-B"/>
+                            <constraint firstItem="ONB-BT-NXT" firstAttribute="leading" secondItem="ONB-SA-001" secondAttribute="leading" constant="32" id="ONB-NXT-L"/>
+                            <constraint firstItem="ONB-SA-001" firstAttribute="trailing" secondItem="ONB-BT-NXT" secondAttribute="trailing" constant="32" id="ONB-NXT-R"/>
+                            <constraint firstItem="ONB-SA-001" firstAttribute="trailing" secondItem="ONB-BT-SKP" secondAttribute="trailing" constant="20" id="ONB-SKP-R"/>
+                            <constraint firstItem="ONB-BT-SKP" firstAttribute="top" secondItem="ONB-SA-001" secondAttribute="top" id="ONB-SKP-T"/>
+                            <constraint firstItem="ONB-LB-TIT" firstAttribute="leading" secondItem="ONB-SA-001" secondAttribute="leading" constant="32" id="ONB-TIT-L"/>
+                            <constraint firstItem="ONB-SA-001" firstAttribute="trailing" secondItem="ONB-LB-TIT" secondAttribute="trailing" constant="32" id="ONB-TIT-R"/>
+                            <constraint firstItem="ONB-LB-TIT" firstAttribute="top" secondItem="ONB-IM-001" secondAttribute="bottom" constant="40" id="ONB-TIT-T"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onBoardingImage" destination="ONB-IM-001" id="ONB-OUT-IM1"/>
+                        <outlet property="onBoardingTitle" destination="ONB-LB-TIT" id="ONB-OUT-TT1"/>
+                        <outlet property="onboardingDescribtion" destination="ONB-LB-DSC" id="ONB-OUT-DS1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONB-FR-001" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3955" y="-187"/>
+        </scene>
+        <!--On Boarding Second View Controller-->
+        <scene sceneID="ONB-SC-002">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingSecondViewController" id="ONB-VC-002" customClass="OnBoardingSecondViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ONB-VW-002">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-BT-SKP2">
+                                <rect key="frame" x="312" y="118.00000000000001" width="61" height="35.666666666666671"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Skip">
+                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="18"/>
+                                    <color key="baseForegroundColor" name="Primary Color"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="skip_btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="skipButtonTapped:" destination="ONB-VC-002" eventType="touchUpInside" id="ONB-BT-SK2"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-IM-002">
+                                <rect key="frame" x="71.666666666666686" y="212" width="250" height="247"/>
+                                <color key="tintColor" name="Primary Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="ONB-IM-H2"/>
+                                    <constraint firstAttribute="width" constant="250" id="ONB-IM-W2"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow Your Leagues" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-TIT2">
+                                <rect key="frame" x="32" y="500.00000000000006" width="329" height="33.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_title_2"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your favourite leagues to your collection and keep track of every team and standing." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-DSC2">
+                                <rect key="frame" x="32" y="553.66666666666663" width="329" height="38.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_desc_2"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-BT-NXT2">
+                                <rect key="frame" x="32" y="684" width="329" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ONB-BT-H2"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Next" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="baseForegroundColor" name="TextButton"/>
+                                    <color key="baseBackgroundColor" name="Primary Color"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="next_btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="ONB-VC-002" eventType="touchUpInside" id="ONB-BT-NX2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ONB-SA-002"/>
+                        <color key="backgroundColor" name="app BackGround"/>
+                        <constraints>
+                            <constraint firstItem="ONB-LB-DSC2" firstAttribute="leading" secondItem="ONB-SA-002" secondAttribute="leading" constant="32" id="ONB-DSC-L2"/>
+                            <constraint firstItem="ONB-SA-002" firstAttribute="trailing" secondItem="ONB-LB-DSC2" secondAttribute="trailing" constant="32" id="ONB-DSC-R2"/>
+                            <constraint firstItem="ONB-LB-DSC2" firstAttribute="top" secondItem="ONB-LB-TIT2" secondAttribute="bottom" constant="20" id="ONB-DSC-T2"/>
+                            <constraint firstItem="ONB-IM-002" firstAttribute="centerX" secondItem="ONB-VW-002" secondAttribute="centerX" id="ONB-IM-CX2"/>
+                            <constraint firstItem="ONB-IM-002" firstAttribute="top" secondItem="ONB-SA-002" secondAttribute="top" constant="92" id="ONB-IM-T2"/>
+                            <constraint firstItem="ONB-SA-002" firstAttribute="bottom" secondItem="ONB-BT-NXT2" secondAttribute="bottom" constant="50" id="ONB-NXT-B2"/>
+                            <constraint firstItem="ONB-BT-NXT2" firstAttribute="leading" secondItem="ONB-SA-002" secondAttribute="leading" constant="32" id="ONB-NXT-L2"/>
+                            <constraint firstItem="ONB-SA-002" firstAttribute="trailing" secondItem="ONB-BT-NXT2" secondAttribute="trailing" constant="32" id="ONB-NXT-R2"/>
+                            <constraint firstItem="ONB-SA-002" firstAttribute="trailing" secondItem="ONB-BT-SKP2" secondAttribute="trailing" constant="20" id="ONB-SKP-R2"/>
+                            <constraint firstItem="ONB-BT-SKP2" firstAttribute="top" secondItem="ONB-SA-002" secondAttribute="top" id="ONB-SKP-T2"/>
+                            <constraint firstItem="ONB-LB-TIT2" firstAttribute="leading" secondItem="ONB-SA-002" secondAttribute="leading" constant="32" id="ONB-TIT-L2"/>
+                            <constraint firstItem="ONB-SA-002" firstAttribute="trailing" secondItem="ONB-LB-TIT2" secondAttribute="trailing" constant="32" id="ONB-TIT-R2"/>
+                            <constraint firstItem="ONB-LB-TIT2" firstAttribute="top" secondItem="ONB-IM-002" secondAttribute="bottom" constant="40" id="ONB-TIT-T2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onBoardingImage" destination="ONB-IM-002" id="ONB-OUT-IM2"/>
+                        <outlet property="onBoardingTitle" destination="ONB-LB-TIT2" id="ONB-OUT-TT2"/>
+                        <outlet property="onboardingDescribtion" destination="ONB-LB-DSC2" id="ONB-OUT-DS2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONB-FR-002" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3155" y="-187"/>
+        </scene>
+        <!--On Boarding Third View Controller-->
+        <scene sceneID="ONB-SC-003">
+            <objects>
+                <viewController storyboardIdentifier="OnBoardingThirdViewController" id="ONB-VC-003" customClass="OnBoardingThirdViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ONB-VW-003">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-IM-003">
+                                <rect key="frame" x="71.666666666666686" y="210" width="250" height="250"/>
+                                <color key="tintColor" name="Primary Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="ONB-IM-H3"/>
+                                    <constraint firstAttribute="width" constant="250" id="ONB-IM-W3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never Miss a Match" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-TIT3">
+                                <rect key="frame" x="32" y="500.00000000000006" width="329" height="33.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_title_3"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get the latest match results, upcoming fixtures, and full squad details at your fingertips." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-LB-DSC3">
+                                <rect key="frame" x="32" y="553.66666666666663" width="329" height="57.333333333333371"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" name="TextColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="onboarding_desc_3"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONB-BT-NXT3">
+                                <rect key="frame" x="32" y="684" width="329" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ONB-BT-H3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Get Started" cornerStyle="large">
+                                    <fontDescription key="titleFontDescription" type="boldSystem" pointSize="20"/>
+                                    <color key="baseForegroundColor" name="TextButton"/>
+                                    <color key="baseBackgroundColor" name="Primary Color"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="get_started_btn"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="getStartedTapped:" destination="ONB-VC-003" eventType="touchUpInside" id="ONB-BT-NX3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ONB-SA-003"/>
+                        <color key="backgroundColor" name="app BackGround"/>
+                        <constraints>
+                            <constraint firstItem="ONB-LB-DSC3" firstAttribute="leading" secondItem="ONB-SA-003" secondAttribute="leading" constant="32" id="ONB-DSC-L3"/>
+                            <constraint firstItem="ONB-SA-003" firstAttribute="trailing" secondItem="ONB-LB-DSC3" secondAttribute="trailing" constant="32" id="ONB-DSC-R3"/>
+                            <constraint firstItem="ONB-LB-DSC3" firstAttribute="top" secondItem="ONB-LB-TIT3" secondAttribute="bottom" constant="20" id="ONB-DSC-T3"/>
+                            <constraint firstItem="ONB-IM-003" firstAttribute="centerX" secondItem="ONB-VW-003" secondAttribute="centerX" id="ONB-IM-CX3"/>
+                            <constraint firstItem="ONB-IM-003" firstAttribute="top" secondItem="ONB-SA-003" secondAttribute="top" constant="92" id="ONB-IM-T3"/>
+                            <constraint firstItem="ONB-SA-003" firstAttribute="bottom" secondItem="ONB-BT-NXT3" secondAttribute="bottom" constant="50" id="ONB-NXT-B3"/>
+                            <constraint firstItem="ONB-BT-NXT3" firstAttribute="leading" secondItem="ONB-SA-003" secondAttribute="leading" constant="32" id="ONB-NXT-L3"/>
+                            <constraint firstItem="ONB-SA-003" firstAttribute="trailing" secondItem="ONB-BT-NXT3" secondAttribute="trailing" constant="32" id="ONB-NXT-R3"/>
+                            <constraint firstItem="ONB-LB-TIT3" firstAttribute="leading" secondItem="ONB-SA-003" secondAttribute="leading" constant="32" id="ONB-TIT-L3"/>
+                            <constraint firstItem="ONB-SA-003" firstAttribute="trailing" secondItem="ONB-LB-TIT3" secondAttribute="trailing" constant="32" id="ONB-TIT-R3"/>
+                            <constraint firstItem="ONB-LB-TIT3" firstAttribute="top" secondItem="ONB-IM-003" secondAttribute="bottom" constant="40" id="ONB-TIT-T3"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="onBoardingImage" destination="ONB-IM-003" id="ONB-OUT-IM3"/>
+                        <outlet property="onBoardingTitle" destination="ONB-LB-TIT3" id="ONB-OUT-TT3"/>
+                        <outlet property="onboardingDescribtion" destination="ONB-LB-DSC3" id="ONB-OUT-DS3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ONB-FR-003" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2355" y="-187"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Arsenal" width="292" height="343"/>
@@ -789,9 +1066,11 @@
         <image name="e.circle" catalog="system" width="128" height="123"/>
         <image name="globe.fill" catalog="system" width="128" height="119"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
+        <image name="trophy.fill" catalog="system" width="128" height="128"/>
         <namedColor name="Primary Color">
             <color red="0.1803921568627451" green="0.54509803921568623" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
