@@ -25,6 +25,10 @@ class LeagueDetailsCollectionViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        collectionView.register(SectionHeader.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeader.identifier)
+        
         let layout = UICollectionViewCompositionalLayout{ index , enviornement in
             if index == 0 {
                 return self.setupNextMatchsSection()
@@ -123,7 +127,7 @@ class LeagueDetailsCollectionViewController:
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 16, bottom: 5, trailing: 8)
-        
+        section.boundarySupplementaryItems = [createHeaderLayout()]
         
         return section
     }
@@ -140,7 +144,7 @@ class LeagueDetailsCollectionViewController:
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 15, trailing: 16)
-        
+        section.boundarySupplementaryItems = [createHeaderLayout()]
         return section
     }
     
@@ -157,7 +161,7 @@ class LeagueDetailsCollectionViewController:
         section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 8, bottom: 5, trailing: 5)
         
-        
+        section.boundarySupplementaryItems = [createHeaderLayout()]
         return section
     }
     
@@ -177,7 +181,8 @@ class LeagueDetailsCollectionViewController:
         switch section {
         case 0 : return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
         case 1 : return leagueDetailsPresenter?.getItemsCount(for: 1) ?? 0
-        default: return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
+        case 2 : return leagueDetailsPresenter?.getItemsCount(for: 2) ?? 0
+        default : return 0
         }
     }
     
@@ -272,6 +277,41 @@ class LeagueDetailsCollectionViewController:
             self.navigationItem.backBarButtonItem = backButton
             navigationController?.pushViewController(teamDetailsVc!, animated: true)
         }
+    }
+    
+    
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard kind == UICollectionView.elementKindSectionHeader else {
+            return UICollectionReusableView()
+        }
+
+        let header = collectionView.dequeueReusableSupplementaryView(
+            ofKind: kind,
+            withReuseIdentifier: SectionHeader.identifier,
+            for: indexPath) as! SectionHeader
+
+       
+        switch indexPath.section {
+        case 0: header.titleLabel.text = "Upcoming Matches"
+        case 1: header.titleLabel.text = "Latest Results"
+        case 2: header.titleLabel.text = "Teams"
+        default: header.titleLabel.text = ""
+        }
+        
+        return header
+    }
+    
+    func createHeaderLayout() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(44)
+        )
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
     }
     
     
