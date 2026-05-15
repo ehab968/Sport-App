@@ -35,6 +35,11 @@ class LeaguePresenter: LeaguePresenterProtocol {
     }
 
     func fetchLeagues() async{
+        guard networkManager.isConnectedToInternet() else {
+            view?.hideLoading()
+            view?.showOfflineAlert()
+            return
+        }
         view?.showLoading()
         do{
             let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues", parameters: nil)
@@ -51,7 +56,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
     func addLeagueToFavorites(league: League) {
         Task(priority: .background){
             do{
-                try coreDataManager.saveFavLeague(league: league)
+                try coreDataManager.saveFavLeague(league: league, sportEndpoint: sportEndpointName)
                 await MainActor.run{
                     view?.onSaveLeagueSuccess()
                 }

@@ -14,6 +14,7 @@ protocol LeagueDetailsProtocol : AnyObject {
     func showError(message: String)
     func reloadData()
     func setupTennisView()
+    func showOfflineAlert()
 }
 
 
@@ -98,6 +99,12 @@ class LeagueDetailsCollectionViewController:
     
     func showError(message: String) {
         showAlert(title: LocalizationKey.errorTitle.localized, message: message)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showOfflineAlert() {
+        showAlert(title: LocalizationKey.offlineTitle.localized, message: LocalizationKey.offlineMessage.localized)
+        self.navigationController?.popViewController(animated: true)
     }
     
     

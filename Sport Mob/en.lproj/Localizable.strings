@@ -44,4 +44,8 @@
 "next_btn" = "Next";
 "get_started_btn" = "Get Started";
 "your_leagues_your_way" = "Your leagues. Your way.";
+"offline_title" = "No Internet Connection";
+"offline_message" = "It seems you are offline. Please check your connection.";
+"remove_confirmation_title" = "Remove from Favorites?";
+"remove_confirmation_message" = "Are you sure you want to remove this league from your favorites?";
 

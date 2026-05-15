@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol CoreDataManagerProtocol {
-    func saveFavLeague(league : League) throws
+    func saveFavLeague(league : League, sportEndpoint: String) throws
     func fetchFavLeagues() throws -> [LeagueEntity]
     func removeFavLeague(leagueId: Int) throws
     func isFav(leagueId: Int) throws -> Bool
@@ -35,13 +35,14 @@ class CoreDataManager : CoreDataManagerProtocol {
     }
     
     
-    func saveFavLeague(league : League) throws {
+    func saveFavLeague(league : League, sportEndpoint: String) throws {
         let favLeague = LeagueEntity(context: viewContext)
         favLeague.id = Int64(league.leagueKey ?? 0)
         favLeague.leagueName = league.leagueName
         favLeague.leagueImage = league.leagueLogo
         favLeague.countryName = league.countryName
         favLeague.countryImage = league.countryLogo
+        favLeague.sportEndpoint = sportEndpoint
         
         try viewContext.save()
     }

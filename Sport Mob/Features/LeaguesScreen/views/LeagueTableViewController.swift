@@ -19,6 +19,7 @@ protocol LeagueTableViewControllerProtocol: AnyObject {
     func onSaveLeagueSuccess()
     func onRemoveLeagueSuccess()
     func onSaveLeagueFailure(message: String)
+    func showOfflineAlert()
 }
 
 
@@ -91,6 +92,10 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     
     func onSaveLeagueFailure(message: String) {
         showAlert(title: LocalizationKey.errorTitle.localized, message: message)
+    }
+    
+    func showOfflineAlert() {
+        showAlert(title: LocalizationKey.offlineTitle.localized, message: LocalizationKey.offlineMessage.localized)
     }
     
     @IBAction func reloadBtnAction(_ sender: Any) {

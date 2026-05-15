@@ -13,6 +13,7 @@ protocol CricketTableViewControllerProtocol: AnyObject {
     func hideLoading()
     func showError(message: String)
     func reloadData()
+    func showOfflineAlert()
 }
 
 
@@ -51,6 +52,10 @@ class CricketTableViewController: UITableViewController , CricketTableViewContro
     
     func showError(message: String) {
         showAlert(title: LocalizationKey.errorTitle.localized, message: message)
+    }
+    
+    func showOfflineAlert() {
+        showAlert(title: LocalizationKey.offlineTitle.localized, message: LocalizationKey.offlineMessage.localized)
     }
     
     func reloadData() {
