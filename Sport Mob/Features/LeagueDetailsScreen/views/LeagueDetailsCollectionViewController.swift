@@ -20,7 +20,7 @@ protocol LeagueDetailsProtocol : AnyObject {
 
 class LeagueDetailsCollectionViewController:
     UICollectionViewController , LeagueDetailsProtocol {
-    let indicator = UIActivityIndicatorView(style: .large)
+    var isLoading = true
     var leagueDetailsPresenter : LeagueDetailsPresenterProtocol?
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class LeagueDetailsCollectionViewController:
         }
         
         collectionView.setCollectionViewLayout(layout, animated: true)
-        indicator.color = .primary
+       
         Task {
             await leagueDetailsPresenter?.fetchLeagueDetails()
         }
@@ -83,12 +83,7 @@ class LeagueDetailsCollectionViewController:
     }
     
     func showLoading() {
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first {
-            indicator.center = window.center
-            window.addSubview(indicator)
-            indicator.startAnimating()
-        }
+       isLoading = true
     }
     
     func reloadData() {
@@ -96,8 +91,7 @@ class LeagueDetailsCollectionViewController:
     }
     
     func hideLoading() {
-        indicator.stopAnimating()
-        indicator.removeFromSuperview()
+       isLoading = false
     }
     
     func showError(message: String) {
@@ -177,6 +171,10 @@ class LeagueDetailsCollectionViewController:
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        if isLoading {
+                    return 3
+                }
         // #warning Incomplete implementation, return the number of items
         switch section {
         case 0 : return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
@@ -187,10 +185,17 @@ class LeagueDetailsCollectionViewController:
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        if isLoading {
+                    
+                    let cellIdentifier = indexPath.section == 0 ? "nextMatchesCell" : (indexPath.section == 1 ? "latestMatchesCell" : "leagueTeamsCell")
+                    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
+                    cell.startShimmering()
+                    return cell
+                }
         switch  indexPath.section {
         case 0 :
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "nextMatchesCell", for: indexPath) as! NextMatchesCollectionViewCell
+            cell.stopShimmering()
             let nextMatch = leagueDetailsPresenter?.getMatch(at : indexPath.row, for : 0)
             cell.firstTeamName.text = nextMatch?.HomeTeamName
             cell.secondTeamName.text = nextMatch?.AwayTeamName
@@ -211,6 +216,7 @@ class LeagueDetailsCollectionViewController:
         case 1 :
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMatchesCell", for: indexPath) as! LatestMatchesCollectionViewCell
+            cell.stopShimmering()
             let lastMatch = leagueDetailsPresenter?.getMatch(at : indexPath.row, for : 1)
             
             cell.firstTeamName.text = lastMatch?.HomeTeamName
@@ -233,6 +239,7 @@ class LeagueDetailsCollectionViewController:
         case 2 :
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "leagueTeamsCell", for: indexPath) as! LeagueTeamsCollectionViewCell
+            cell.stopShimmering()
             let Team = leagueDetailsPresenter?.getTeam(at: indexPath.row)
             if Team?.teamName == "Brighton & Hove Albion"{
                 cell.teamName.text = "Brighton"

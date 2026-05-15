@@ -21,7 +21,7 @@ protocol TeamDetailsViewProtocol : AnyObject{
 class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource ,TeamDetailsViewProtocol  {
     
     var presenter : TeamDetailsPresenterProtocol?
-    let indicator = UIActivityIndicatorView(style: .large)
+    var isLoading = true
     @IBOutlet weak var teamPlayersTableView: UITableView!
     @IBOutlet weak var tableHeaderView: TeamPlayersHeader!
     
@@ -47,8 +47,8 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
         navigationController?.navigationBar.standardAppearance = appearance
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
-        indicator.color = .appPrimary
         
+        tableHeaderView.startShimmering()
         Task {
             await presenter?.fetchTeamDetails()
            
@@ -75,12 +75,8 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
     
     
     func showLoading() {
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first {
-            indicator.center = window.center
-            window.addSubview(indicator)
-            indicator.startAnimating()
-        }
+        tableHeaderView.startShimmering()
+       isLoading = true
     }
     
     func reloadData() {
@@ -88,8 +84,8 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
     }
     
     func hideLoading() {
-        indicator.stopAnimating()
-        indicator.removeFromSuperview()
+        tableHeaderView.stopShimmering()
+        isLoading = false
     }
     
     func showError(message: String) {
@@ -110,6 +106,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isLoading { return 1}
         switch section {
         case 0:
             return 1
@@ -138,6 +135,16 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
         let defenders = presenter?.getDefender(at: indexPath.row)
         let midfielders = presenter?.getMidfielder(at: indexPath.row)
         let forwards = presenter?.getForward(at: indexPath.row)
+        
+        if isLoading {
+                    cell.startShimmering()
+                    cell.playerName.text = ""
+                    cell.playerAge.text = ""
+                    cell.playerCountry.text = ""
+                    cell.playerNum.text = ""
+                    cell.playerImage.image = nil
+                    return cell
+                }
         switch indexPath.section {
         case 0:
             cell.playerName.text = coach?.coachName ?? "UnKnown"
@@ -145,7 +152,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
             cell.playerCountry.text = coach?.coachCountry ?? ""
             cell.playerNum.text = ""
             cell.playerImage.image = UIImage.coash
-            
+            cell.stopShimmering()
         case 1:
             cell.playerName.text = keeper?.playerName ??
             "UnKnown"
@@ -157,6 +164,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
             } else {
                 cell.playerImage.image = UIImage.unknownPlayer
             }
+            cell.stopShimmering()
             
         case 2:
             cell.playerName.text = defenders?.playerName ??
@@ -169,7 +177,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
             } else {
                 cell.playerImage.image = UIImage.unknownPlayer
             }
-            
+            cell.stopShimmering()
         case 3:
             cell.playerName.text = midfielders?.playerName ?? "UnKnown"
             cell.playerNum.text = midfielders?.playerNumber ?? ""
@@ -180,6 +188,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
             } else {
                 cell.playerImage.image = UIImage.unknownPlayer
             }
+            cell.stopShimmering()
         case 4:
             cell.playerName.text = forwards?.playerName ?? "UnKnowm"
             cell.playerNum.text = forwards?.playerNumber ?? ""
@@ -190,6 +199,7 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
             } else {
                 cell.playerImage.image = UIImage.unknownPlayer
             }
+            cell.stopShimmering()
         default:
             cell.playerName.text = ""
         }
@@ -205,6 +215,9 @@ class TeamDetailsViewController: UIViewController , UITableViewDelegate, UITable
       }
       
       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+          if isLoading {
+                  return nil
+              }
           
           let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "TeamPlayersCellHeader") as? TeamPlayersCellHeader
           switch section {

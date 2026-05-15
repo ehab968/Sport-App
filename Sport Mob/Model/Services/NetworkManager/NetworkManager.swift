@@ -16,7 +16,7 @@ class NetworkManager: NetworkManagerProtocol {
     
     static let shared = NetworkManager()
     private let baseURL = "https://apiv2.allsportsapi.com"
-    private let apiKey = "8ad547d2b1135989a6411c40d8f3e7486790060b64d19f0d6c7859fdd56b5761"
+    private let apiKey = "396db0d904675e988101040735b0f22fc732e9ab5cbcebf01ea1c02e125b8b36"
     
     private init(){}
     

@@ -25,4 +25,9 @@ class NextMatchesCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.borderColor = UIColor.appPrimary.cgColor
         self.contentView.backgroundColor = .cellBackground
     }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            stopShimmering() 
+        }
 }
