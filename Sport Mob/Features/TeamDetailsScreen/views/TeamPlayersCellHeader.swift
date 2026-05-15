@@ -28,4 +28,9 @@ class TeamPlayersCellHeader: UITableViewHeaderFooterView {
         playersPosition.textColor = .appPrimary
         playersPosition.font = UIFont.boldSystemFont(ofSize: 18)
     }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            self.stopShimmering()
+        }
 }

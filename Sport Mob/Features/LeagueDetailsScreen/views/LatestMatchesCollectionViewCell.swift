@@ -24,4 +24,9 @@ class LatestMatchesCollectionViewCell: UICollectionViewCell {
         self.contentView.backgroundColor = .cellBackground
     }
     
+    override func prepareForReuse() {
+            super.prepareForReuse()
+            stopShimmering() 
+        }
+    
 }

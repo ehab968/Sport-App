@@ -34,6 +34,5 @@ class TeamPlayersHeader: UIView , NibLoadable{
         self.backgroundColor = .clear
     }
 
-   
     
 }

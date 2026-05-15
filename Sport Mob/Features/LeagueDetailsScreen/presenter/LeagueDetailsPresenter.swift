@@ -51,7 +51,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
                     parameters: [
                         "leagueId": id,
                         "from": DateHelper.today(),
-                        "to": DateHelper.daysAhead(7)
+                        "to": DateHelper.daysAhead(600)
                     ]
                 )
                 
@@ -61,7 +61,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
                     met: "Fixtures",
                     parameters: [
                         "leagueId": id,
-                        "from": DateHelper.daysAgo(7),
+                        "from": DateHelper.daysAgo(100),
                         "to": DateHelper.today()
                         
                     ]
