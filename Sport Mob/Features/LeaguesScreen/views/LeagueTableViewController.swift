@@ -10,6 +10,7 @@ import SDWebImage
 import RxSwift
 import RxCocoa
 import Toast
+import SkeletonView
 
 protocol LeagueTableViewControllerProtocol: AnyObject {
     func showLoading()
@@ -46,6 +47,8 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         tableView.sectionHeaderTopPadding = 0
         tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.0))
         
+        tableView.isSkeletonable = true
+        
         Task {
             await presenter?.fetchLeagues()
         }
@@ -53,18 +56,11 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     }
     
     func showLoading() {
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let window = scene.windows.first {
-            indicator.center = window.center
-            indicator.color = .primary
-            window.addSubview(indicator)
-            indicator.startAnimating()
-        }
+        tableView.showAnimatedGradientSkeleton()
     }
     
     func hideLoading() {
-        indicator.stopAnimating()
-        indicator.removeFromSuperview()
+        tableView.hideSkeleton()
     }
     
     func showError(message: String) {
@@ -109,7 +105,16 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
     }
 }
 
-extension LeagueTableViewController {
+extension LeagueTableViewController: SkeletonTableViewDataSource {
+    
+    // MARK: - Skeleton Table View Data Source
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "cell"
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
     
     // MARK: - Table view data source
     

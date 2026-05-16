@@ -14,6 +14,7 @@ class FavoriteTableViewController: UITableViewController{
     
     @IBOutlet weak var themeIcon: UIBarButtonItem!
     @IBOutlet weak var localizationIcon: UIBarButtonItem!
+    @IBOutlet var noFavView: UIView!
     var presenter: FavLeaguePresenter?
     let disposeBag = DisposeBag()
     
@@ -138,38 +139,8 @@ class FavoriteTableViewController: UITableViewController{
     }
     
     func showNoFavImage() {
-        let emptyView = UIView(frame: self.tableView.bounds)
-        
-        let imageView = UIImageView()
-        imageView.image = UIImage.noFav
-        imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .gray
-        
-        let titleLabel = UILabel()
-        titleLabel.text = LocalizationKey.noFavoritesMessage.localized
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 24)
-        titleLabel.textColor = .primary
-        titleLabel.textAlignment = .center
-        
-        let stackView = UIStackView(arrangedSubviews: [imageView, titleLabel])
-        stackView.axis = .vertical
-        stackView.spacing = 24
-        stackView.alignment = .center
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        emptyView.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            stackView.centerXAnchor.constraint(equalTo: emptyView.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: emptyView.centerYAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 250),
-            imageView.widthAnchor.constraint(equalToConstant: 250)
-        ])
-        
-        self.tableView.backgroundView = emptyView
-        
+        self.tableView.backgroundView = noFavView
         self.tableView.separatorStyle = .none
-        
     }
     
     // MARK: - Table view data source

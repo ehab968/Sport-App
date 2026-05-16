@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import SkeletonView
 class LeagueCell: UITableViewCell {
     
     @IBOutlet weak var leagueImage: UIImageView!
@@ -25,6 +26,15 @@ class LeagueCell: UITableViewCell {
         self.layer.cornerRadius = 12.0
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .cellBackground
+        
+        // Make views skeletonable
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
+        leagueImage.isSkeletonable = true
+        leagueLabel.isSkeletonable = true
+        countryLabel.isSkeletonable = true
+        countryImage.isSkeletonable = true
+        favBtn.isSkeletonable = true
     }
     
 

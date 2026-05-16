@@ -306,12 +306,46 @@
                     </navigationItem>
                     <connections>
                         <outlet property="localizationIcon" destination="Fav-Loc-Btn" id="Fav-Conn-Loc"/>
+                        <outlet property="noFavView" destination="noFav-VW-001" id="noFav-Conn-VW"/>
                         <outlet property="themeIcon" destination="Fav-Theme-Btn" id="Fav-Conn-Theme"/>
                     </connections>
                 </tableViewController>
+                <view contentMode="scaleToFill" id="noFav-VW-001">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="noFav-STK-001">
+                            <rect key="frame" x="71.666666666666686" y="295.66666666666663" width="250" height="260.66666666666663"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="noFav-IMG-001">
+                                    <rect key="frame" x="0.0" y="2" width="250" height="197"/>
+                                    <color key="tintColor" name="Primary Color"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="200" id="noFav-IMG-H"/>
+                                        <constraint firstAttribute="width" constant="250" id="noFav-IMG-W"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="No Favorites" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="noFav-LBL-001">
+                                    <rect key="frame" x="0.0" y="231.99999999999994" width="250" height="28.666666666666686"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                    <color key="textColor" name="Primary Color"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="no_fav_Leagues"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="app BackGround"/>
+                    <constraints>
+                        <constraint firstItem="noFav-STK-001" firstAttribute="centerX" secondItem="noFav-VW-001" secondAttribute="centerX" id="noFav-STK-CX"/>
+                        <constraint firstItem="noFav-STK-001" firstAttribute="centerY" secondItem="noFav-VW-001" secondAttribute="centerY" id="noFav-STK-CY"/>
+                    </constraints>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NV8-ce-G6Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812.97709923664115" y="138.02816901408451"/>
+            <point key="canvasLocation" x="1092" y="908"/>
         </scene>
         <!--Leagues -->
         <scene sceneID="zk3-tI-RIa">

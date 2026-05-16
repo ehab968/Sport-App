@@ -11,6 +11,7 @@
 		6D37A3902FAA8B2200BC6711 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = 6D37A38F2FAA8B2200BC6711 /* Toast */; };
 		6D4356292FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356272FA9049A0069F21D /* LeagueEntity+CoreDataClass.swift */; };
 		6D43562A2FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D4356282FA9049A0069F21D /* LeagueEntity+CoreDataProperties.swift */; };
+		6D46C5352FB9320700605B3B /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 6D46C5342FB9320700605B3B /* SkeletonView */; };
 		6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 6D9A10A82FA9E544001EFD10 /* RxCocoa */; };
 		6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6DB44CE42FA64B5400F40AE6 /* SDWebImage */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 				6D9A10A92FA9E544001EFD10 /* RxCocoa in Frameworks */,
 				6DB44CE52FA64B5400F40AE6 /* SDWebImage in Frameworks */,
 				6D1BE1372FA176D4008794EF /* Alamofire in Frameworks */,
+				6D46C5352FB9320700605B3B /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +126,7 @@
 				6DB44CE42FA64B5400F40AE6 /* SDWebImage */,
 				6D9A10A82FA9E544001EFD10 /* RxCocoa */,
 				6D37A38F2FAA8B2200BC6711 /* Toast */,
+				6D46C5342FB9320700605B3B /* SkeletonView */,
 			);
 			productName = "Sport Mob";
 			productReference = 6D2957142F9FFE8000B77185 /* Sport Mob.app */;
@@ -186,6 +189,7 @@
 				6DB44CE32FA64B5400F40AE6 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 				6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */,
 				6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */,
+				6D46C5332FB9320700605B3B /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6D2957152F9FFE8000B77185 /* Products */;
@@ -529,6 +533,14 @@
 				minimumVersion = 5.1.1;
 			};
 		};
+		6D46C5332FB9320700605B3B /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.31.0;
+			};
+		};
 		6D9A10A72FA9E544001EFD10 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
@@ -557,6 +569,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 6D37A38E2FAA8B2200BC6711 /* XCRemoteSwiftPackageReference "toast-swift" */;
 			productName = Toast;
+		};
+		6D46C5342FB9320700605B3B /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6D46C5332FB9320700605B3B /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		6D9A10A82FA9E544001EFD10 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
