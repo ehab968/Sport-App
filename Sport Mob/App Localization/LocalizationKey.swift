@@ -34,6 +34,10 @@ enum LocalizationKey: String {
     case defenders = "defenders"
     case midfielders = "midfielders"
     case forwards = "forwards"
+    case offlineTitle = "offline_title"
+    case offlineMessage = "offline_message"
+    case removeConfirmationTitle = "remove_confirmation_title"
+    case removeConfirmationMessage = "remove_confirmation_message"
     
     var localized: String {
         let lang = UserDefaults.standard.stringArray(forKey: "AppleLanguages")?.first ?? "en"

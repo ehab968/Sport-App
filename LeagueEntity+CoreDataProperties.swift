@@ -23,6 +23,7 @@ extension LeagueEntity {
     @NSManaged public var id: Int64
     @NSManaged public var leagueImage: String?
     @NSManaged public var leagueName: String?
+    @NSManaged public var sportEndpoint: String?
 
 }
 

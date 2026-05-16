@@ -10,6 +10,7 @@ import Alamofire
 
 protocol NetworkManagerProtocol {
     func getData<T:Decodable>(endpoint : String,met : String,parameters: [String : Any]?)async throws-> T
+    func isConnectedToInternet() -> Bool
 }
 
 class NetworkManager: NetworkManagerProtocol {
@@ -35,5 +36,9 @@ class NetworkManager: NetworkManagerProtocol {
             .serializingDecodable(T.self)
             .value
         return result
+    }
+    
+    func isConnectedToInternet() -> Bool {
+        return NetworkReachabilityManager()?.isReachable ?? false
     }
 }

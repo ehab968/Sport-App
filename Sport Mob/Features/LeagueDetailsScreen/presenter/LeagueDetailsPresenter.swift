@@ -31,7 +31,11 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
     
    
     func fetchLeagueDetails() async {
-       
+        guard networkManager.isConnectedToInternet() else {
+            view?.hideLoading()
+            view?.showOfflineAlert()
+            return
+        }
         view?.showLoading()
         
         let endpoint = self.sportEndpointName ?? APIEndpoints.football

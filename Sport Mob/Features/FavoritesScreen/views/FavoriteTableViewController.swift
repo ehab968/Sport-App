@@ -57,10 +57,55 @@ class FavoriteTableViewController: UITableViewController{
                     countryName: league.countryName ?? "",
                     leagueImageURL: league.leagueImage ?? ""
                 ){
-                    self.presenter?.removeLeagueFromFav(at: Int(league.id))
+                    self.showConfirmationAlert(
+                        title: LocalizationKey.removeConfirmationTitle.localized,
+                        message: LocalizationKey.removeConfirmationMessage.localized,
+                        confirmTitle: LocalizationKey.removeBtn.localized,
+                        cancelTitle: LocalizationKey.cancelBtn.localized
+                    ) {
+                        self.presenter?.removeLeagueFromFav(at: Int(league.id))
+                    }
                 }
             }
             .disposed(by: disposeBag)
+        
+        tableView.rx.modelSelected(LeagueEntity.self)
+            .subscribe(onNext: { [weak self] league in
+                guard let self = self else { return }
+                self.navigateToLeagueDetails(league: league)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func navigateToLeagueDetails(league: LeagueEntity) {
+        let sportEndpoint = league.sportEndpoint ?? APIEndpoints.football
+        let leagueId = String(league.id)
+        
+        if sportEndpoint == APIEndpoints.cricket {
+            if let cricketLeagueDetailsVc = storyboard?.instantiateViewController(identifier: "CricketTableViewController") as? CricketTableViewController {
+                cricketLeagueDetailsVc.presenter = CricketPresenter(
+                    leagueId: leagueId,
+                    sportEndpointName: sportEndpoint,
+                    view: cricketLeagueDetailsVc
+                )
+                let backButton = UIBarButtonItem()
+                backButton.tintColor = .primary
+                self.navigationItem.backBarButtonItem = backButton
+                navigationController?.pushViewController(cricketLeagueDetailsVc, animated: true)
+            }
+        } else {
+            if let leagueDetailsVc = storyboard?.instantiateViewController(identifier: "LeagueDetailsCollectionViewController") as? LeagueDetailsCollectionViewController {
+                leagueDetailsVc.leagueDetailsPresenter = LeagueDetailsPresenter(
+                    leagueId: leagueId,
+                    sportEndpointName: sportEndpoint,
+                    view: leagueDetailsVc
+                )
+                let backButton = UIBarButtonItem()
+                backButton.tintColor = .primary
+                self.navigationItem.backBarButtonItem = backButton
+                navigationController?.pushViewController(leagueDetailsVc, animated: true)
+            }
+        }
     }
     
     
@@ -126,16 +171,16 @@ class FavoriteTableViewController: UITableViewController{
         self.tableView.separatorStyle = .none
         
     }
-
+    
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116  // 100pt content + 16pt for top/bottom spacing insets
     }
     
 }
 
- // Nav button actions
+// Nav button actions
 extension FavoriteTableViewController {
     func setupTheme() {
         self.themeIcon.image = UIImage(systemName: ThemeManager.shared.isDarkMode() ? "sun.max.fill" : "moon.fill")

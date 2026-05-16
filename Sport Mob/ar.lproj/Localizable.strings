@@ -43,4 +43,9 @@
 "skip_btn" = "تخطي";
 "next_btn" = "التالي";
 "get_started_btn" = "ابدأ الآن";
+"your_leagues_your_way" = "دورياتك. بطريقتك.";
+"offline_title" = "لا يوجد اتصال بالإنترنت";
+"offline_message" = "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك.";
+"remove_confirmation_title" = "حذف من المفضلات؟";
+"remove_confirmation_message" = "هل أنت متأكد أنك تريد حذف هذا الدوري من مفضلاتك؟";
 

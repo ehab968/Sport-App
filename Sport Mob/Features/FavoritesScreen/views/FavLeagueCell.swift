@@ -27,17 +27,27 @@ class FavLeagueCell: UITableViewCell {
         self.layer.cornerRadius = 12.0
         self.backgroundColor = .clear
         self.contentView.backgroundColor = .cellBackground
+        
+        setupRemoveButton()
     }
     
-
+    private func setupRemoveButton() {
+        removeButton.backgroundColor = UIColor.systemRed.withAlphaComponent(0.85)
+        removeButton.layer.shadowOffset = CGSize(width: 0, height: 4)
+        removeButton.layer.shadowRadius = 8
+        removeButton.layer.shadowOpacity = 0.3
+    }
+    
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Vertical spacing between cells via content view insets
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0))
         favLeagueImage.layer.cornerRadius = favLeagueImage.frame.size.width / 2
+        
+        removeButton.layer.cornerRadius = removeButton.frame.size.height / 2
     }
-
+    
     
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -57,9 +67,20 @@ class FavLeagueCell: UITableViewCell {
         
         removeButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
+                self?.animateButtonTap()
                 removeAction()
             })
             .disposed(by: disposeBag)
+    }
+    
+    private func animateButtonTap() {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.removeButton.transform = CGAffineTransform(scaleX: 0.85, y: 0.85)
+        }) { _ in
+            UIView.animate(withDuration: 0.1, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5, options: .curveEaseInOut, animations: {
+                self.removeButton.transform = .identity
+            }, completion: nil)
+        }
     }
 }

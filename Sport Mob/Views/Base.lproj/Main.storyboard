@@ -46,12 +46,18 @@
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="app_name"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your leagues. Your way." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SPL-TAG-001">
                                 <rect key="frame" x="32" y="517" width="329" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="your_leagues_your_way"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SPL-SA-001"/>
@@ -220,12 +226,12 @@
         <scene sceneID="Ns0-aX-aVY">
             <objects>
                 <tableViewController storyboardIdentifier="FavoriteTableViewController" id="yHK-Kp-HCv" customClass="FavoriteTableViewController" customModule="Sport_Mob" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="S7v-ab-MP5">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="S7v-ab-MP5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="app BackGround"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavLeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="99" id="CS2-wL-Pkb" customClass="FavLeagueCell" customModule="Sport_Mob" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="FavLeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="favCell" rowHeight="99" id="CS2-wL-Pkb" customClass="FavLeagueCell" customModule="Sport_Mob" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="99"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CS2-wL-Pkb" id="8ym-d7-xTl">
@@ -236,16 +242,16 @@
                                             <rect key="frame" x="8" y="0.0" width="98.333333333333329" height="99"/>
                                         </imageView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="exn-EP-UWn">
-                                            <rect key="frame" x="116.33333333333331" y="29" width="163" height="44"/>
+                                            <rect key="frame" x="116.33333333333333" y="29" width="200.66666666666669" height="44"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="200" text="League name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3o-gx-sff">
-                                                    <rect key="frame" x="0.0" y="0.0" width="163" height="21.666666666666668"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200.66666666666666" height="21.666666666666668"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="country name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Go-Me-euY">
-                                                    <rect key="frame" x="0.0" y="24.666666666666664" width="163" height="19.333333333333336"/>
+                                                    <rect key="frame" x="0.0" y="24.666666666666664" width="200.66666666666666" height="19.333333333333336"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -253,16 +259,12 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pk3-q9-I3E">
-                                            <rect key="frame" x="287.33333333333331" y="33" width="85.666666666666686" height="33.333333333333343"/>
+                                            <rect key="frame" x="325" y="32.333333333333329" width="48" height="34.333333333333329"/>
                                             <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="filled" title="Remove">
-                                                <fontDescription key="titleFontDescription" type="boldSystem" pointSize="16"/>
+                                            <buttonConfiguration key="configuration" style="filled" image="trash.fill" catalog="system">
                                                 <color key="baseForegroundColor" name="TextButton"/>
                                                 <color key="baseBackgroundColor" name="Primary Color"/>
                                             </buttonConfiguration>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="string" keyPath="localizationKey" value="remove_btn"/>
-                                            </userDefinedRuntimeAttributes>
                                         </button>
                                     </subviews>
                                     <constraints>
@@ -1070,6 +1072,7 @@
         <image name="moon.fill" catalog="system" width="128" height="123"/>
         <image name="psg" width="224.90464782714844" height="224.90960693359375"/>
         <image name="soccerball.inverse" catalog="system" width="128" height="123"/>
+        <image name="trash.fill" catalog="system" width="117" height="128"/>
         <image name="trophy.fill" catalog="system" width="128" height="128"/>
         <namedColor name="Primary Color">
             <color red="0.1803921568627451" green="0.54509803921568623" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

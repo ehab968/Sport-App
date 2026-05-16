@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -13,8 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setupToastStyle()
         return true
+    }
+    
+    private func setupToastStyle() {
+        var style = ToastStyle()
+        style.backgroundColor = .appPrimary
+        style.messageColor = .textButtonn
+        style.cornerRadius = 12
+        style.messageFont = .systemFont(ofSize: 16, weight: .semibold)
+        
+        ToastManager.shared.style = style
+        ToastManager.shared.isTapToDismissEnabled = true
+        ToastManager.shared.duration = 2.0
     }
 
     // MARK: UISceneSession Lifecycle

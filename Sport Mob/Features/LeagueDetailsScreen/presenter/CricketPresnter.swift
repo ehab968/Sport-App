@@ -28,7 +28,11 @@ class CricketPresenter : CricketPresenterProtocol {
     
    
     func fetchCricketMatches() async {
-       
+        guard networkManager.isConnectedToInternet() else {
+            view?.hideLoading()
+            view?.showOfflineAlert()
+            return
+        }
         view?.showLoading()
         
         let endpoint = self.sportEndpointName ?? APIEndpoints.football
@@ -59,7 +63,7 @@ class CricketPresenter : CricketPresenterProtocol {
         return cricketTeams.count
         }
 
-        func getMatch(at index: Int, ) -> CricketTeam? {
+        func getMatch(at index: Int) -> CricketTeam? {
            return cricketTeams[index]
         }
     
