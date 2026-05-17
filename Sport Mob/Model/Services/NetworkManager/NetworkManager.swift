@@ -19,7 +19,11 @@ class NetworkManager: NetworkManagerProtocol {
     private let baseURL = "https://apiv2.allsportsapi.com"
     private let apiKey = "396db0d904675e988101040735b0f22fc732e9ab5cbcebf01ea1c02e125b8b36"
     
-    private init(){}
+    var session: Session
+    
+    init(session: Session = .default){
+        self.session = session
+    }
     
     
     func getData<T:Decodable>(
@@ -31,7 +35,7 @@ class NetworkManager: NetworkManagerProtocol {
         var finalParameters = parameters ?? [:]
         finalParameters["met"] = met
         finalParameters["APIkey"] = apiKey
-        let result = try await AF.request(fullUrl, method: .get , parameters: finalParameters)
+        let result = try await session.request(fullUrl, method: .get , parameters: finalParameters)
             .validate()
             .serializingDecodable(T.self)
             .value
