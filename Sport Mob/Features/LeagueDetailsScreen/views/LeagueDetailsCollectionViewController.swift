@@ -30,6 +30,8 @@ class LeagueDetailsCollectionViewController:
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: SectionHeader.identifier)
         
+        collectionView.register(LatestMatchesContainerCell.self, forCellWithReuseIdentifier: LatestMatchesContainerCell.identifier)
+        
         let layout = UICollectionViewCompositionalLayout{ index , enviornement in
             if index == 0 {
                 return self.setupNextMatchsSection()
@@ -138,13 +140,13 @@ class LeagueDetailsCollectionViewController:
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(350))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
         
-        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 15, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 15, trailing: 0)
         section.boundarySupplementaryItems = [createHeaderLayout()]
         return section
     }
@@ -172,8 +174,14 @@ class LeagueDetailsCollectionViewController:
     // MARK: UICollectionViewDataSource
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 3
+        if isLoading {
+            return 3
+        }
+        let hasData = (leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0) > 0 ||
+                      (leagueDetailsPresenter?.getItemsCount(for: 1) ?? 0) > 0 ||
+                      (leagueDetailsPresenter?.getItemsCount(for: 2) ?? 0) > 0
+        
+        return hasData ? 3 : 0
     }
     
     
@@ -182,10 +190,10 @@ class LeagueDetailsCollectionViewController:
         if isLoading {
                     return 3
                 }
-        // #warning Incomplete implementation, return the number of items
+        
         switch section {
         case 0 : return leagueDetailsPresenter?.getItemsCount(for: 0) ?? 0
-        case 1 : return leagueDetailsPresenter?.getItemsCount(for: 1) ?? 0
+        case 1 : return (leagueDetailsPresenter?.getItemsCount(for: 1) ?? 0) > 0 ? 1 : 0
         case 2 : return leagueDetailsPresenter?.getItemsCount(for: 2) ?? 0
         default : return 0
         }
@@ -194,7 +202,7 @@ class LeagueDetailsCollectionViewController:
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if isLoading {
                     
-                    let cellIdentifier = indexPath.section == 0 ? "nextMatchesCell" : (indexPath.section == 1 ? "latestMatchesCell" : "leagueTeamsCell")
+                    let cellIdentifier = indexPath.section == 0 ? "nextMatchesCell" : (indexPath.section == 1 ? LatestMatchesContainerCell.identifier : "leagueTeamsCell")
                     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
                     cell.startShimmering()
                     return cell
@@ -222,23 +230,11 @@ class LeagueDetailsCollectionViewController:
             
         case 1 :
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "latestMatchesCell", for: indexPath) as! LatestMatchesCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LatestMatchesContainerCell.identifier, for: indexPath) as! LatestMatchesContainerCell
             cell.stopShimmering()
-            let lastMatch = leagueDetailsPresenter?.getMatch(at : indexPath.row, for : 1)
-            
-            cell.firstTeamName.text = lastMatch?.HomeTeamName
-            cell.secondTeamName.text = lastMatch?.AwayTeamName
-            cell.matchResult.text = lastMatch?.eventFinalResult
-            if let firstTeamLogo = lastMatch?.homeTeamLogo, let url = URL(string: firstTeamLogo) {
-                cell.firstTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
-            } else {
-                cell.firstTeamImage.image = UIImage.undifinedTeam
-            }
-            if let secondTeamLogo = lastMatch?.awayTeamLogo, let url = URL(string: secondTeamLogo) {
-                cell.secondTeamImage.sd_setImage(with: url, placeholderImage: UIImage.undifinedTeam)
-            } else {
-                cell.secondTeamImage.image = UIImage.undifinedTeam
-            }
+            cell.presenter = leagueDetailsPresenter
+            cell.parentViewController = self
+            cell.reloadData()
             
             return cell
             

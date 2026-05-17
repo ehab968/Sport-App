@@ -43,6 +43,7 @@ class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol {
 
         if endpoint == APIEndpoints.tennis {
             view?.hideLoading()
+            view?.reloadData()
             view?.setupTennisView()
         }else{
             do {
