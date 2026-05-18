@@ -15,6 +15,7 @@ protocol LeaguePresenterProtocol {
     func addLeagueToFavorites(league: League)
     func isLeagueFav(at index : Int) -> Bool
     func removeLeagueFromFav(at index: Int)
+    func filterLeagues(with text: String)
 }
 
 class LeaguePresenter: LeaguePresenterProtocol {
@@ -25,6 +26,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
     private let networkManager : NetworkManagerProtocol
     private let coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
     private var leagues : [League] = []
+    private var filteredLeagues : [League] = []
     var sportEndpointName: String
 
     init(view: LeagueTableViewControllerProtocol?, sportEndpointName: String ,
@@ -44,6 +46,7 @@ class LeaguePresenter: LeaguePresenterProtocol {
         do{
             let response: LeaguesResponse = try await networkManager.getData(endpoint: sportEndpointName, met: "Leagues", parameters: nil)
             leagues = response.result ?? []
+            filteredLeagues = leagues
             view?.hideLoading()
             view?.reloadData()
         }
@@ -95,11 +98,19 @@ class LeaguePresenter: LeaguePresenterProtocol {
 
 extension LeaguePresenter {
     func getleaguesCount() -> Int {
-        leagues.count
+        filteredLeagues.count
     }
     
     func getLeague(at index: Int) -> League {
-        return leagues[index]
+        return filteredLeagues[index]
     }
     
+    func filterLeagues(with text: String) {
+        if text.isEmpty {
+            filteredLeagues = leagues
+        } else {
+            filteredLeagues = leagues.filter { $0.leagueName?.lowercased().contains(text.lowercased()) ?? false }
+        }
+        view?.reloadData()
+    }
 }

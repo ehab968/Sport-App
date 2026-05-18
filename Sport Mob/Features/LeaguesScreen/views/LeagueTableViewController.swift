@@ -45,7 +45,6 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
         navigationController?.navigationBar.scrollEdgeAppearance = appearance
         
         tableView.sectionHeaderTopPadding = 0
-        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0.0))
         
         tableView.isSkeletonable = true
         
@@ -53,6 +52,12 @@ class LeagueTableViewController: UITableViewController , LeagueTableViewControll
             await presenter?.fetchLeagues()
         }
         self.navigationItem.title = LocalizationKey.leaguesTitle.localized
+        
+        if let headerView = tableView.tableHeaderView {
+            let searchBar = headerView.subviews.first(where: { $0 is UISearchBar }) as? UISearchBar
+            searchBar?.delegate = self
+            searchBar?.placeholder = LocalizationKey.leaguePlaceholder.localized
+        }
     }
     
     func showLoading() {
@@ -217,7 +222,14 @@ extension LeagueTableViewController: SkeletonTableViewDataSource {
         footerView.backgroundColor = .clear
         return footerView
     }
+}
+
+extension LeagueTableViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter?.filterLeagues(with: searchText)
+    }
     
-    
-    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }

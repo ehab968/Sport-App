@@ -355,6 +355,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" name="app BackGround"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="HDR-001">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="SRB-001">
+                                    <rect key="frame" x="0.0" y="2" width="393" height="56"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
+                            </subviews>
+                            <color key="backgroundColor" name="app BackGround"/>
+                            <constraints>
+                                <constraint firstItem="SRB-001" firstAttribute="top" secondItem="HDR-001" secondAttribute="top" constant="2" id="C-1"/>
+                                <constraint firstItem="SRB-001" firstAttribute="leading" secondItem="HDR-001" secondAttribute="leading" id="C-2"/>
+                                <constraint firstItem="SRB-001" firstAttribute="trailing" secondItem="HDR-001" secondAttribute="trailing" id="C-3"/>
+                                <constraint firstItem="SRB-001" firstAttribute="bottom" secondItem="HDR-001" secondAttribute="bottom" constant="-2" id="C-4"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="LeagueCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="113" id="OAd-SE-aJr" customClass="LeagueCell" customModule="Sport_Mob" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="50" width="393" height="113"/>

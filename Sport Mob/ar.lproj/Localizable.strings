@@ -48,4 +48,7 @@
 "offline_message" = "يبدو أنك غير متصل بالإنترنت. يرجى التحقق من اتصالك.";
 "remove_confirmation_title" = "حذف من المفضلات؟";
 "remove_confirmation_message" = "هل أنت متأكد أنك تريد حذف هذا الدوري من مفضلاتك؟";
+"upcoming_matches" = "المباريات القادمة";
+"latest_results" = "أحدث النتائج";
+"teams" = "الفرق";
 

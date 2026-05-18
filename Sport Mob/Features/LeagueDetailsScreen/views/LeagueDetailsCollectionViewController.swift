@@ -303,9 +303,9 @@ class LeagueDetailsCollectionViewController:
 
        
         switch indexPath.section {
-        case 0: header.titleLabel.text = "Upcoming Matches"
-        case 1: header.titleLabel.text = "Latest Results"
-        case 2: header.titleLabel.text = "Teams"
+        case 0: header.titleLabel.text = LocalizationKey.upcomingMatches.localized
+        case 1: header.titleLabel.text = LocalizationKey.latestResults.localized
+        case 2: header.titleLabel.text = LocalizationKey.teams.localized
         default: header.titleLabel.text = ""
         }
         

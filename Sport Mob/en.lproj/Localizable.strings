@@ -48,4 +48,7 @@
 "offline_message" = "It seems you are offline. Please check your connection.";
 "remove_confirmation_title" = "Remove from Favorites?";
 "remove_confirmation_message" = "Are you sure you want to remove this league from your favorites?";
+"upcoming_matches" = "Upcoming Matches";
+"latest_results" = "Latest Results";
+"teams" = "Teams";
 
